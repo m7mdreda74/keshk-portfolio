@@ -14,6 +14,15 @@ Route::get('/run-migrations-and-seed-db', function () {
     }
 });
 
+Route::get('/db-test', function () {
+    try {
+        \Illuminate\Support\Facades\DB::connection()->getPdo();
+        return 'Database connection is working fine!';
+    } catch (\Exception $e) {
+        return 'Database connection error: ' . $e->getMessage();
+    }
+});
+
 Route::get('/{any?}', function () {
     return view('app');
 })->where('any', '.*');
