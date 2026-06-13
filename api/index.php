@@ -20,6 +20,9 @@ if (isset($_ENV['VERCEL'])) {
     $_ENV['APP_PACKAGES_CACHE'] = '/tmp/storage/bootstrap/cache/packages.php';
     $_ENV['APP_CONFIG_CACHE'] = '/tmp/storage/bootstrap/cache/config.php';
     $_ENV['APP_ROUTES_CACHE'] = '/tmp/storage/bootstrap/cache/routes.php';
+    
+    // Override SCRIPT_NAME to prevent Laravel from stripping /api/ prefix from routes
+    $_SERVER['SCRIPT_NAME'] = '/index.php';
 }
 
 // Forward requests to public/index.php for Laravel
