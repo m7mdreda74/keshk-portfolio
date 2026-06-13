@@ -1,0 +1,568 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Custom Deep Blue & Purple Dark Mode Styling */
+:root {
+  --background-color: #070913 !important;
+  --default-color: #a4b3d6 !important;
+  --heading-color: #ffffff !important;
+  --accent-color: #9063ff !important;
+  --surface-color: #0e1227 !important;
+  --contrast-color: #ffffff !important;
+
+  /* Nav Menu Colors */
+  --nav-color: #a4b3d6 !important;
+  --nav-hover-color: #9063ff !important;
+  --nav-mobile-background-color: #0e1227 !important;
+  --nav-dropdown-background-color: #0e1227 !important;
+  --nav-dropdown-color: #a4b3d6 !important;
+  --nav-dropdown-hover-color: #9063ff !important;
+}
+
+/* Ensure body has correct background and smooth transition */
+body {
+  background-color: var(--background-color) !important;
+  color: var(--default-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-variant-numeric: lining-nums !important;
+  font-feature-settings: "lnum" on, "lnum" 1 !important;
+}
+
+/* Global headers and titles */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color) !important;
+}
+
+/* Ensure background color classes match the dark mode theme */
+.light-background, 
+.dark-background, 
+.accent-background {
+  --background-color: #070913 !important;
+  --default-color: #a4b3d6 !important;
+  --heading-color: #ffffff !important;
+  --accent-color: #9063ff !important;
+  --surface-color: #0e1227 !important;
+  --contrast-color: #ffffff !important;
+  background-color: var(--background-color) !important;
+  color: var(--default-color) !important;
+}
+
+/* Section overrides */
+section, .section {
+  background-color: var(--background-color) !important;
+  color: var(--default-color) !important;
+}
+
+/* Premium styling for Containers and Cards with subtle purple-blue glow */
+.about .container,
+.services .service-item,
+.contact .info-wrap,
+.contact .php-email-form {
+  background: linear-gradient(145deg, #0e1227, #0b0e20) !important;
+  border: 1px solid rgba(144, 99, 255, 0.15) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 16px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Contact section mailto link */
+.contact .contact-email-link {
+  color: #c084fc;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.contact .contact-email-link:hover {
+  color: #9063ff;
+  border-bottom-color: #9063ff;
+}
+
+/* Service items interactive hover & glow */
+.services .service-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.services .service-item:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  border-color: rgba(144, 99, 255, 0.5) !important;
+  box-shadow: 0 20px 40px rgba(144, 99, 255, 0.2) !important;
+}
+
+/* Service item icon micro-animation on hover */
+.services .service-item .icon {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.services .service-item:hover .icon {
+  background: var(--heading-color) !important;
+  color: var(--accent-color) !important;
+  transform: rotate(15deg) scale(1.15) !important;
+}
+
+/* Portfolio Filters (Tabs) styling as modern capsule pills */
+.portfolio .portfolio-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px !important;
+}
+
+.portfolio .portfolio-filters li {
+  color: var(--default-color) !important;
+  background-color: rgba(144, 99, 255, 0.06) !important;
+  border: 1px solid rgba(144, 99, 255, 0.15) !important;
+  padding: 10px 24px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  border-radius: 30px !important;
+  text-transform: capitalize !important;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.portfolio .portfolio-filters li:hover {
+  background-color: rgba(144, 99, 255, 0.15) !important;
+  border-color: var(--accent-color) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 15px rgba(144, 99, 255, 0.15) !important;
+}
+
+.portfolio .portfolio-filters li.filter-active {
+  background-color: var(--accent-color) !important;
+  color: var(--contrast-color) !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 8px 25px rgba(144, 99, 255, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Portfolio Item Image Hover Zoom */
+.portfolio .portfolio-item {
+  border-radius: 16px !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio .portfolio-item img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-radius: 16px !important;
+}
+
+.portfolio .portfolio-item:hover img {
+  transform: scale(1.08) !important;
+}
+
+/* Glassmorphic Portfolio Overlay with slide animation */
+.portfolio .portfolio-item .portfolio-info {
+  background: rgba(14, 18, 39, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(144, 99, 255, 0.25) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5) !important;
+  transform: translateY(20px) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  opacity: 0 !important;
+  padding: 20px !important;
+  margin: 15px !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.portfolio .portfolio-item:hover .portfolio-info {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  bottom: 10px !important;
+}
+
+/* Portfolio preview links styling */
+.portfolio .portfolio-item .portfolio-info .preview-link,
+.portfolio .portfolio-item .portfolio-info .details-link {
+  color: var(--accent-color) !important;
+}
+.portfolio .portfolio-item .portfolio-info .preview-link:hover,
+.portfolio .portfolio-item .portfolio-info .details-link:hover {
+  color: #ffffff !important;
+  transform: scale(1.15);
+}
+
+/* Resume Item interactive hover state */
+.resume .resume-item {
+  border-left-color: rgba(144, 99, 255, 0.25) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.resume .resume-item:hover {
+  transform: translateX(6px) !important;
+}
+
+.resume .resume-item h4 {
+  color: var(--accent-color) !important;
+}
+
+.resume .resume-item h5 {
+  background-color: rgba(144, 99, 255, 0.1) !important;
+  color: #c084fc !important;
+  border-radius: 6px;
+  padding: 6px 16px !important;
+  font-size: 14px !important;
+}
+
+.resume .resume-item::before {
+  background: var(--background-color) !important;
+  border-color: var(--accent-color) !important;
+  transition: all 0.3s ease !important;
+}
+
+.resume .resume-item:hover::before {
+  background: var(--accent-color) !important;
+  transform: scale(1.3) !important;
+}
+
+/* Form controls (Contact Form) styling */
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea {
+  background-color: rgba(7, 9, 19, 0.7) !important;
+  border: 1px solid rgba(144, 99, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  padding: 12px 18px !important;
+  transition: all 0.3s ease !important;
+}
+
+.contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=email]:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 12px rgba(144, 99, 255, 0.25) !important;
+  background-color: rgba(14, 18, 39, 0.9) !important;
+}
+
+.contact .php-email-form input[type=text]::placeholder,
+.contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form textarea::placeholder {
+  color: rgba(164, 179, 214, 0.4) !important;
+}
+
+/* Contact form submit button pulse animation */
+.contact .php-email-form button[type=submit] {
+  background: var(--accent-color) !important;
+  box-shadow: 0 4px 15px rgba(144, 99, 255, 0.3) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.contact .php-email-form button[type=submit]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(144, 99, 255, 0.5) !important;
+  background-color: #814bfb !important;
+}
+
+/* Header customization */
+.header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Vertical linear gradient for the entire header width, fading to transparent at the bottom */
+  background: linear-gradient(to bottom, rgba(3, 4, 9, 0.95) 0%, rgba(3, 4, 9, 0.75) 45%, rgba(3, 4, 9, 0) 100%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  padding: 8px 0 !important;
+  transition: all 0.4s ease !important;
+}
+
+.scrolled .header {
+  background: linear-gradient(to bottom, rgba(3, 4, 9, 0.95) 0%, rgba(3, 4, 9, 0.75) 45%, rgba(3, 4, 9, 0) 100%) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding: 4px 0 !important;
+}
+
+/* Logo overrides to bypass main.css specificity constraints */
+.header .logo {
+  height: 56px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.4s ease !important;
+}
+
+.header .logo img {
+  max-height: 48px !important;
+  width: auto !important;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5)) drop-shadow(0px 0px 10px rgba(3, 4, 9, 0.95)) !important;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease !important;
+}
+
+.header .logo img:hover {
+  transform: scale(1.08) !important;
+}
+
+.scrolled .header .logo {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.scrolled .header .logo img {
+  max-height: 48px !important;
+}
+
+/* Make Hero image take up full viewport and include navbar */
+.hero {
+  min-height: 100vh !important;
+  padding-top: 140px !important;
+  margin-top: 0 !important;
+}
+
+/* Navigation overrides */
+@media (min-width: 1200px) {
+  .navmenu a {
+    color: var(--nav-color) !important;
+    transition: all 0.3s ease !important;
+  }
+  .navmenu a:hover,
+  .navmenu li:hover > a,
+  .navmenu .active {
+    color: var(--nav-hover-color) !important;
+  }
+}
+
+/* Overlays on background images (Hero, Stats, Testimonials) */
+.hero::before {
+  background: rgba(7, 9, 19, 0.6) !important;
+}
+
+.stats::before,
+.testimonials::before {
+  background: rgba(7, 9, 19, 0.85) !important;
+}
+
+/* Purecounter and stats text colors */
+.stats .stats-item span {
+  color: var(--accent-color) !important;
+  font-weight: 800 !important;
+}
+
+.stats .stats-item p {
+  color: var(--default-color) !important;
+}
+
+
+/* Scroll to top button pulse glow */
+.scroll-top {
+  background-color: var(--accent-color) !important;
+  animation: pulseGlow 2.5s infinite;
+}
+
+.scroll-top:hover {
+  background-color: #814bfb !important;
+  transform: translateY(-3px) scale(1.05) !important;
+}
+
+/* Custom Animation Keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(144, 99, 255, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(144, 99, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(144, 99, 255, 0);
+  }
+}
+
+@keyframes gradientBg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Hero text animations are handled inside HeroSection.vue (scoped) */
+
+/* Progress bar sweeping shimmer animation */
+.about .progress-bar-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.about .progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.about .progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+/* ----------------------------------------------
+   ANIMATION PACK — Premium Cinematic Animations
+----------------------------------------------- */
+
+/* -- 1. Section Title Shimmer -- */
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, #ffffff 0%, #c084fc 40%, #9063ff 55%, #ffffff 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleShimmer 4s linear infinite;
+}
+
+@keyframes titleShimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+/* -- 2. Slow-Zoom Parallax on Background Images -- */
+.stats img,
+.portfolio-bg,
+.contact-bg {
+  animation: slowZoom 18s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+@keyframes slowZoom {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* -- 3. Resume Items — Staggered Slide-In -- */
+.resume .resume-item {
+  opacity: 0;
+  transform: translateX(-24px);
+  animation: resumeSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.resume .resume-item:nth-child(1) { animation-delay: 0.1s; }
+.resume .resume-item:nth-child(2) { animation-delay: 0.25s; }
+.resume .resume-item:nth-child(3) { animation-delay: 0.4s; }
+.resume .resume-item:nth-child(4) { animation-delay: 0.55s; }
+.resume .resume-item:nth-child(5) { animation-delay: 0.7s; }
+
+@keyframes resumeSlideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* -- 4. Service Icon Entrance -- */
+.services .service-item .icon {
+  animation: iconEntrance 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.col-lg-4:nth-child(1) .service-item .icon { animation-delay: 0.10s; }
+.col-lg-4:nth-child(2) .service-item .icon { animation-delay: 0.22s; }
+.col-lg-4:nth-child(3) .service-item .icon { animation-delay: 0.34s; }
+.col-lg-4:nth-child(4) .service-item .icon { animation-delay: 0.46s; }
+.col-lg-4:nth-child(5) .service-item .icon { animation-delay: 0.58s; }
+.col-lg-4:nth-child(6) .service-item .icon { animation-delay: 0.70s; }
+
+@keyframes iconEntrance {
+  0%   { opacity: 0; transform: scale(0.5) rotate(-15deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* -- 5. Stats Counter Pop -- */
+.stats .stats-item {
+  animation: statsPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.stats .col-lg-3:nth-child(1) .stats-item { animation-delay: 0.10s; }
+.stats .col-lg-3:nth-child(2) .stats-item { animation-delay: 0.25s; }
+.stats .col-lg-3:nth-child(3) .stats-item { animation-delay: 0.40s; }
+.stats .col-lg-3:nth-child(4) .stats-item { animation-delay: 0.55s; }
+
+@keyframes statsPop {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* -- 6. Portfolio Card Reveal -- */
+.portfolio .portfolio-item {
+  animation: cardReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes cardReveal {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* -- 7. Contact Info Items Stagger -- */
+.contact .info-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: infoFadeUp 0.6s ease forwards;
+}
+
+.contact .col-lg-4:nth-child(1) .info-item { animation-delay: 0.15s; }
+.contact .col-lg-4:nth-child(2) .info-item { animation-delay: 0.30s; }
+.contact .col-lg-4:nth-child(3) .info-item { animation-delay: 0.45s; }
+
+@keyframes infoFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
