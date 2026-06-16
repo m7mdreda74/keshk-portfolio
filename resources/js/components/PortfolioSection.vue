@@ -135,17 +135,6 @@ export default {
 </script>
 
 <style scoped>
-.portfolio-item {
-  position: relative;
-  overflow: visible !important; /* Need overflow visible to allow absolute dropdown to show */
-  z-index: 1;
-  transition: z-index 0.3s ease;
-}
-
-.portfolio-item:hover {
-  z-index: 10; /* Bring hovered item card to front */
-}
-
 /* Card inner container */
 .portfolio-card-inner {
   position: relative;
@@ -374,9 +363,19 @@ export default {
 </style>
 
 <style>
-/* Global override to prevent clipping of absolute-positioned elements in isotope grid */
+/* Global overrides to prevent clipping and overlay issues in isotope grid */
+.portfolio .container {
+  position: relative;
+  z-index: 10 !important; /* Force container on top of any background overlays */
+}
+
 .portfolio .portfolio-item {
-  overflow: visible !important;
+  overflow: visible !important; /* Allow the dropdown description to slide down outside the card */
+  z-index: 1;
+}
+
+.portfolio .portfolio-item:hover {
+  z-index: 9999 !important; /* Bring the hovered card to the very front so its dropdown overlays cards below it */
 }
 </style>
 
