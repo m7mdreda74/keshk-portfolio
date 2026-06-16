@@ -17,26 +17,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Truncate tables first to ensure no duplicates and fresh data
+        PersonalInfo::truncate();
+        Skill::truncate();
+        Service::truncate();
+        Stat::truncate();
+        Project::truncate();
+        ResumeItem::truncate();
+
         // 1. Personal Info
         PersonalInfo::create([
             'name'          => 'Mohamed Reda Keshk',
             'profile'       => 'Backend Developer',
             'email'         => 'm7mdreda74@gmail.com',
             'phone'         => '+201099670724',
-            'bio'           => 'I am a motivated backend developer with hands-on experience in creating web applications and APIs using Laravel and PHP. I have successfully completed several training programs, enhancing my skills in database management, RESTful services, and teamwork. Eager to contribute to innovative backend systems, I continuously seek opportunities to improve my technical expertise and apply best practices in software development.',
+            'bio'           => "I am a motivated backend developer with hands-on experience in creating web applications and APIs using Laravel and PHP. I have successfully completed several training programs, enhancing my skills in database management, RESTful services, and teamwork. Eager to contribute to innovative backend systems, I continuously seek opportunities to improve my technical expertise and apply best practices in software development.",
             'profile_image' => 'assets/img/profile-img.png',
             'hero_image'    => 'assets/img/hero-img.png',
         ]);
 
         // 2. Skills — from CV Technical Skills section
-        Skill::create(['name' => 'PHP',        'percentage' => 90]);
-        Skill::create(['name' => 'Laravel',    'percentage' => 90]);
-        Skill::create(['name' => 'MySQL / SQL', 'percentage' => 85]);
-        Skill::create(['name' => 'JavaScript', 'percentage' => 75]);
+        Skill::create(['name' => 'PHP',          'percentage' => 90]);
+        Skill::create(['name' => 'Laravel',      'percentage' => 90]);
+        Skill::create(['name' => 'MySQL / SQL',  'percentage' => 85]);
         Skill::create(['name' => 'RESTful APIs', 'percentage' => 90]);
-        Skill::create(['name' => 'Git & GitHub', 'percentage' => 80]);
-        Skill::create(['name' => 'C#',         'percentage' => 60]);
-        Skill::create(['name' => 'Python',     'percentage' => 60]);
+        Skill::create(['name' => 'JavaScript',   'percentage' => 75]);
+        Skill::create(['name' => 'Git & GitHub', 'percentage' => 85]);
+        Skill::create(['name' => 'Composer',     'percentage' => 80]);
+        Skill::create(['name' => 'C#',           'percentage' => 70]);
+        Skill::create(['name' => 'Python',       'percentage' => 65]);
+        Skill::create(['name' => 'ASP',          'percentage' => 65]);
+        Skill::create(['name' => 'OOP',          'percentage' => 90]);
 
         // 3. Services — derived from proven project work in CV
         Service::create([
@@ -71,45 +82,64 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 4. Stats
-        Stat::create(['label' => 'Projects Completed', 'count' => 8]);
-        Stat::create(['label' => 'Training Programs',  'count' => 3]);
-        Stat::create(['label' => 'GitHub Repositories', 'count' => 15]);
-        Stat::create(['label' => 'Months Experience',  'count' => 33]);
+        Stat::create(['label' => 'Projects Completed', 'count' => 7]);
+        Stat::create(['label' => 'Training Programs',  'count' => 4]);
+        Stat::create(['label' => 'GitHub Repositories', 'count' => 20]);
+        Stat::create(['label' => 'Months Experience',  'count' => 36]);
 
         // 5. Projects — real projects from CV
         Project::create([
+            'title'        => 'Servello — Projects Management',
+            'category'     => 'web',
+            'description'  => 'Developed a Real-Time Project Management & Kanban Platform using Laravel, Vue 3, Inertia.js, and TypeScript. Features dynamic task transitions, dependency tracking, a Smart Time-Tracking System, Direct & Group Chats with Laravel Echo and WebSockets, developer accountability/health score (HP) dashboards, and WhatsApp API notifications.',
+            'image'        => 'assets/img/portfolio/servello.png',
+            'details_link' => 'https://servello.iptvdemo.serv5group.com/',
+        ]);
+
+        Project::create([
             'title'        => 'Serv5 Company Website',
             'category'     => 'web',
-            'description'  => 'Built scalable RESTful APIs (v1) with Laravel Sanctum, a Filament admin panel with custom Page Builder, dynamic pricing engine, ATS careers portal, quotation engine, RBAC with Spatie, and automated cache invalidation.',
+            'description'  => 'Designed & developed scalable RESTful APIs (v1) with Laravel Sanctum authentication. Built a feature-rich admin panel via Filament PHP with a custom Page Builder for dynamic page creation, and engineered a dynamic services and pricing plan engine.',
             'image'        => 'assets/img/portfolio/serv5.png',
             'details_link' => 'https://serv5.com.eg/',
         ]);
+
         Project::create([
             'title'        => 'MyRestaurant SaaS Platform',
             'category'     => 'saas',
-            'description'  => 'Multi-tenant SaaS with database-per-tenant isolation, automated onboarding (migrations + subdomain config), tri-level RBAC (Super Admin / Tenant Admin / Staff), real-time order processing, digital menu, and inventory tracking.',
+            'description'  => 'A high-performance Multi-Tenant SaaS platform with database-per-tenant isolation using Laravel Tenancy. Features automated tenant onboarding (subdomains + migrations), tri-level RBAC (Super Admin, Tenant Admin, Staff), dynamic middleware routing, order processing, digital menu management, and inventory tracking.',
             'image'        => 'assets/img/portfolio/restaurant.png',
             'details_link' => '#',
         ]);
-        Project::create([
-            'title'        => 'Glovy — Parkinson\'s Aid Platform',
-            'category'     => 'api',
-            'description'  => 'A platform helping Parkinson\'s patients, integrating a mobile app, ML-based disease diagnosis models, and real-time Firebase sensor readings via a Laravel REST backend.',
-            'image'        => 'assets/img/portfolio/glovy.jpg',
-            'details_link' => 'https://drive.google.com/file/d/1pMkFEnCtR4ISjgLO45hiWM6bhOY3eqGQ/view?usp=sharing',
-        ]);
+
         Project::create([
             'title'        => 'Grand Travel — Luxury Travel Platform',
             'category'     => 'web',
-            'description'  => 'Luxury travel platform featuring a full admin dashboard for managing tour packages, bookings, multi-category tours, and multi-region business operations with localized currencies across 10+ countries.',
+            'description'  => 'Luxury travel platform featuring an admin dashboard for managing tour packages, destinations, and bookings across 10+ countries. Implemented MySQL relational structure supporting multi-currency (USD, EUR, JPY) and backend logic for specialized tours.',
             'image'        => 'assets/img/portfolio/grand-travel.png',
             'details_link' => 'https://grandtravel1.com/',
         ]);
 
         Project::create([
+            'title'        => 'Glovy — Parkinson\'s Aid Platform',
+            'category'     => 'api',
+            'description'  => 'A platform helping Parkinson\'s patients, integrating a mobile app, ML-based disease diagnosis models, and real-time Firebase sensor readings via a Laravel REST backend.',
+            'image'        => 'assets/img/portfolio/glovy.jpg',
+            'details_link' => 'https://github.com/m7mdreda74/Glovy-API',
+        ]);
+
+        Project::create([
+            'title'        => 'Blog Platform',
+            'category'     => 'web',
+            'description'  => 'A Laravel MVC platform for publishing articles and comments. Includes user authentication, CRUD operations for posts, and interactive comment features.',
+            'image'        => 'assets/img/portfolio/blog.png',
+            'details_link' => 'https://github.com/m7mdreda74/Blog',
+        ]);
+
+        Project::create([
             'title'        => 'Mobile-Shopee E-Commerce',
             'category'     => 'web',
-            'description'  => 'A PHP/HTML/CSS/JS e-commerce website for a mobile shop with CRUD operations for mobiles and categories.',
+            'description'  => 'A PHP/HTML/CSS/JS e-commerce website for a mobile shop, including product catalog, cart management, and CRUD operations for products and categories.',
             'image'        => 'assets/img/portfolio/mobile-shopee.png',
             'details_link' => 'https://github.com/m7mdreda74/E-CommerceMobileShopee',
         ]);
@@ -118,7 +148,7 @@ class DatabaseSeeder extends Seeder
         // --- Education ---
         ResumeItem::create([
             'type'         => 'education',
-            'title'        => 'Bachelor of Computer & Information Sciences — Information Systems',
+            'title'        => 'Bachelor of Computer & Information Sciences — Department of Information Systems',
             'organization' => 'Mansoura University',
             'duration'     => '2020 – 2024',
             'description'  => 'Studied core computer science fundamentals with a specialization in Information Systems, covering database design, software engineering, networking, and programming paradigms.',
