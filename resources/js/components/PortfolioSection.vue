@@ -137,7 +137,7 @@ export default {
 <style scoped>
 .portfolio-item {
   position: relative;
-  overflow: visible; /* Need overflow visible to allow absolute dropdown to show */
+  overflow: visible !important; /* Need overflow visible to allow absolute dropdown to show */
   z-index: 1;
   transition: z-index 0.3s ease;
 }
@@ -371,8 +371,12 @@ export default {
   z-index: 2;
 }
 
-.portfolio .container {
-  position: relative;
-  z-index: 3;
+</style>
+
+<style>
+/* Global override to prevent clipping of absolute-positioned elements in isotope grid */
+.portfolio .portfolio-item {
+  overflow: visible !important;
 }
 </style>
+
