@@ -11,7 +11,7 @@ class AdminAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->session()->get('admin_logged_in', false)) {
-            return response()->json(['message' => 'غير مصرح'], 401);
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         return $next($request);
