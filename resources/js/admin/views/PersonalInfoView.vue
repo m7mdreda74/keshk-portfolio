@@ -49,6 +49,11 @@
             <img :src="form.hero_image" alt="Hero" @error="e => e.target.style.display='none'">
           </div>
         </div>
+        <div class="form-group form-full">
+          <label class="form-label">Resume / CV Download Link</label>
+          <input v-model="form.resume_link" class="form-control" placeholder="https://... or assets/files/resume.pdf" id="pi-resume-link">
+          <small style="color:var(--text-muted);font-size:0.78rem;margin-top:0.3rem;display:block;">This link is used by the "Download Resume" button on your portfolio.</small>
+        </div>
       </div>
     </div>
   </div>
@@ -65,7 +70,7 @@ export default {
     const loading = ref(true);
     const saving = ref(false);
     const form = ref({
-      name: '', profile: '', email: '', phone: '', bio: '', profile_image: '', hero_image: ''
+      name: '', profile: '', email: '', phone: '', bio: '', profile_image: '', hero_image: '', resume_link: ''
     });
 
     onMounted(async () => {

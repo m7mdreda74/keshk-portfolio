@@ -71,6 +71,7 @@ class AdminController extends Controller
             'bio'           => 'required|string',
             'profile_image' => 'nullable|string',
             'hero_image'    => 'nullable|string',
+            'resume_link'   => 'nullable|string',
         ]);
 
         $info = PersonalInfo::first();
@@ -113,7 +114,7 @@ class AdminController extends Controller
     public function deleteSkill(Skill $skill): JsonResponse
     {
         $skill->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
     // ──────────────────────────────────────────
@@ -183,7 +184,7 @@ class AdminController extends Controller
     public function deleteStat(Stat $stat): JsonResponse
     {
         $stat->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
     // ──────────────────────────────────────────
@@ -223,7 +224,7 @@ class AdminController extends Controller
     public function deleteProject(Project $project): JsonResponse
     {
         $project->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
     // ──────────────────────────────────────────
@@ -263,7 +264,7 @@ class AdminController extends Controller
     public function deleteResumeItem(ResumeItem $resumeItem): JsonResponse
     {
         $resumeItem->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
     // ──────────────────────────────────────────
@@ -303,7 +304,7 @@ class AdminController extends Controller
     public function deleteTestimonial(Testimonial $testimonial): JsonResponse
     {
         $testimonial->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
     // ──────────────────────────────────────────
@@ -318,6 +319,6 @@ class AdminController extends Controller
     public function deleteMessage(ContactMessage $contactMessage): JsonResponse
     {
         $contactMessage->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }
