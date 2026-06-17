@@ -72,6 +72,13 @@ class AdminController extends Controller
             'profile_image' => 'nullable|string',
             'hero_image'    => 'nullable|string',
             'resume_link'   => 'nullable|string',
+            'linkedin'      => 'nullable|string',
+            'github'        => 'nullable|string',
+            'whatsapp'      => 'nullable|string',
+            'telegram'      => 'nullable|string',
+            'facebook'      => 'nullable|string',
+            'instagram'     => 'nullable|string',
+            'copyright'     => 'nullable|string',
         ]);
 
         $info = PersonalInfo::first();
