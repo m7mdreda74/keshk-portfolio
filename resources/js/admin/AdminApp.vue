@@ -32,7 +32,7 @@
 
         <!-- Views -->
         <div class="content-area">
-          <DashboardHome v-if="currentSection === 'home'" @navigate="currentSection = $event" />
+          <DashboardHome v-if="currentSection === 'home'" @navigate="navigateTo" />
           <PersonalInfoView v-else-if="currentSection === 'personal'" />
           <SkillsView v-else-if="currentSection === 'skills'" />
           <ServicesView v-else-if="currentSection === 'services'" />
@@ -139,6 +139,10 @@ export default {
       document.querySelector('.dashboard-layout').classList.toggle('sidebar-collapsed');
     };
 
+    const navigateTo = (section) => {
+      currentSection.value = section;
+    };
+
     onMounted(async () => {
       const token = getToken();
       if (token) {
@@ -150,7 +154,7 @@ export default {
       }
     });
 
-    return { authenticated, currentSection, sectionTitles, toast, onLoginSuccess, handleLogout, toggleSidebar };
+    return { authenticated, currentSection, sectionTitles, toast, onLoginSuccess, handleLogout, toggleSidebar, navigateTo };
   }
 };
 </script>
