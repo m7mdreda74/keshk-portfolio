@@ -32,7 +32,7 @@
 
         <!-- Views -->
         <div class="content-area">
-          <DashboardHome v-if="currentSection === 'home'" />
+          <DashboardHome v-if="currentSection === 'home'" @navigate="currentSection = $event" />
           <PersonalInfoView v-else-if="currentSection === 'personal'" />
           <SkillsView v-else-if="currentSection === 'skills'" />
           <ServicesView v-else-if="currentSection === 'services'" />
