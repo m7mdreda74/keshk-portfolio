@@ -63,6 +63,7 @@ export default {
       { key: 'resume',       label: 'Resume',            icon: 'bi-file-earmark-text-fill' },
       { key: 'testimonials', label: 'Testimonials',      icon: 'bi-chat-quote-fill' },
       { key: 'messages',     label: 'Messages',          icon: 'bi-envelope-fill' },
+      { key: 'social',       label: 'Social & Footer',   icon: 'bi-share-fill' },
     ];
 
     return { isCollapsed, navItems };

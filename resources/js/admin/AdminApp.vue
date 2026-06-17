@@ -41,6 +41,7 @@
           <ResumeView v-else-if="currentSection === 'resume'" />
           <TestimonialsView v-else-if="currentSection === 'testimonials'" />
           <MessagesView v-else-if="currentSection === 'messages'" />
+          <SocialLinksView v-else-if="currentSection === 'social'" />
         </div>
       </div>
     </div>
@@ -69,13 +70,14 @@ import ProjectsView from './views/ProjectsView.vue';
 import ResumeView from './views/ResumeView.vue';
 import TestimonialsView from './views/TestimonialsView.vue';
 import MessagesView from './views/MessagesView.vue';
+import SocialLinksView from './views/SocialLinksView.vue';
 
 export default {
   name: 'AdminApp',
   components: {
     AdminLogin, AdminSidebar, DashboardHome,
     PersonalInfoView, SkillsView, ServicesView, StatsView,
-    ProjectsView, ResumeView, TestimonialsView, MessagesView,
+    ProjectsView, ResumeView, TestimonialsView, MessagesView, SocialLinksView,
   },
   setup() {
     const authenticated = ref(false);
@@ -91,6 +93,7 @@ export default {
       resume: 'Resume',
       testimonials: 'Testimonials',
       messages: 'Messages',
+      social: 'Social & Footer',
     };
 
     // ── Token helpers ──

@@ -56,47 +56,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Social Links -->
-    <div v-if="!loading" class="admin-card">
-      <h4 class="sub-section-title"><i class="bi bi-share-fill"></i> Social Media Links</h4>
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label"><i class="bi bi-linkedin" style="color:#0a66c2;margin-right:.4rem;"></i>LinkedIn</label>
-          <input v-model="form.linkedin" class="form-control" placeholder="https://linkedin.com/in/..." id="pi-linkedin">
-        </div>
-        <div class="form-group">
-          <label class="form-label"><i class="bi bi-github" style="color:#e8eaf6;margin-right:.4rem;"></i>GitHub</label>
-          <input v-model="form.github" class="form-control" placeholder="https://github.com/..." id="pi-github">
-        </div>
-        <div class="form-group">
-          <label class="form-label"><i class="bi bi-whatsapp" style="color:#25d366;margin-right:.4rem;"></i>WhatsApp</label>
-          <input v-model="form.whatsapp" class="form-control" placeholder="https://wa.me/20..." id="pi-whatsapp">
-        </div>
-        <div class="form-group">
-          <label class="form-label"><i class="bi bi-telegram" style="color:#0088cc;margin-right:.4rem;"></i>Telegram</label>
-          <input v-model="form.telegram" class="form-control" placeholder="https://t.me/..." id="pi-telegram">
-        </div>
-        <div class="form-group">
-          <label class="form-label"><i class="bi bi-facebook" style="color:#1877f2;margin-right:.4rem;"></i>Facebook</label>
-          <input v-model="form.facebook" class="form-control" placeholder="https://facebook.com/..." id="pi-facebook">
-        </div>
-        <div class="form-group">
-          <label class="form-label"><i class="bi bi-instagram" style="color:#e1306c;margin-right:.4rem;"></i>Instagram</label>
-          <input v-model="form.instagram" class="form-control" placeholder="https://instagram.com/..." id="pi-instagram">
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer Copyright -->
-    <div v-if="!loading" class="admin-card">
-      <h4 class="sub-section-title"><i class="bi bi-c-circle-fill"></i> Footer Copyright</h4>
-      <div class="form-group">
-        <label class="form-label">Copyright Text</label>
-        <input v-model="form.copyright" class="form-control" placeholder="© 2026 Mohamed Reda Keshk. All Rights Reserved." id="pi-copyright">
-        <small style="color:var(--text-muted);font-size:0.78rem;margin-top:0.3rem;display:block;">Shown at the bottom of the portfolio page.</small>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -112,9 +71,7 @@ export default {
     const saving = ref(false);
     const form = ref({
       name: '', profile: '', email: '', phone: '', bio: '',
-      profile_image: '', hero_image: '', resume_link: '',
-      linkedin: '', github: '', whatsapp: '', telegram: '', facebook: '', instagram: '',
-      copyright: ''
+      profile_image: '', hero_image: '', resume_link: ''
     });
 
     onMounted(async () => {
