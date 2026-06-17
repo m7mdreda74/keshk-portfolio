@@ -69,8 +69,8 @@ export default {
       error.value = '';
       loading.value = true;
       try {
-        await axios.post('/api/admin/login', { password: password.value });
-        emit('login-success');
+        const res = await axios.post('/api/admin/login', { password: password.value });
+        emit('login-success', res.data.token);
       } catch (e) {
         error.value = e.response?.data?.message || 'Connection error';
       } finally {

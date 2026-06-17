@@ -93,6 +93,18 @@ export default {
       messages: 'Messages',
     };
 
+    // ── Token helpers ──
+    const getToken = () => localStorage.getItem('admin_token');
+    const setToken = (t) => localStorage.setItem('admin_token', t);
+    const clearToken = () => localStorage.removeItem('admin_token');
+
+    // Attach token to every Axios request
+    axios.interceptors.request.use(config => {
+      const token = getToken();
+      if (token) config.headers['X-Admin-Token'] = token;
+      return config;
+    });
+
     // Toast system
     const toast = ref({ show: false, message: '', type: 'success' });
     let toastTimer = null;
@@ -105,12 +117,14 @@ export default {
 
     provide('showToast', showToast);
 
-    const onLoginSuccess = () => {
+    const onLoginSuccess = (token) => {
+      setToken(token);
       authenticated.value = true;
     };
 
     const handleLogout = async () => {
-      await axios.post('/api/admin/logout');
+      await axios.post('/api/admin/logout').catch(() => {});
+      clearToken();
       authenticated.value = false;
       currentSection.value = 'home';
     };
@@ -120,10 +134,14 @@ export default {
     };
 
     onMounted(async () => {
-      try {
-        const res = await axios.get('/api/admin/check-auth');
-        authenticated.value = res.data.authenticated;
-      } catch {}
+      const token = getToken();
+      if (token) {
+        try {
+          const res = await axios.get('/api/admin/check-auth');
+          authenticated.value = res.data.authenticated;
+          if (!authenticated.value) clearToken();
+        } catch { clearToken(); }
+      }
     });
 
     return { authenticated, currentSection, sectionTitles, toast, onLoginSuccess, handleLogout, toggleSidebar };

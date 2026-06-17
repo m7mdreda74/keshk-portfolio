@@ -10,7 +10,10 @@ class AdminAuthenticated
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->session()->get('admin_logged_in', false)) {
+        $token     = $request->header('X-Admin-Token');
+        $validToken = hash('sha256', config('app.admin_password') . config('app.key'));
+
+        if (!$token || !hash_equals($validToken, $token)) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 

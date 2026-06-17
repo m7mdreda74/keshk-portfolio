@@ -21,6 +21,11 @@ class AdminController extends Controller
     //  AUTH
     // ──────────────────────────────────────────
 
+    private function generateToken(): string
+    {
+        return hash('sha256', config('app.admin_password') . config('app.key'));
+    }
+
     public function login(Request $request): JsonResponse
     {
         $request->validate(['password' => 'required|string']);
@@ -29,20 +34,22 @@ class AdminController extends Controller
             return response()->json(['message' => 'Incorrect password'], 401);
         }
 
-        $request->session()->put('admin_logged_in', true);
-        return response()->json(['message' => 'Logged in successfully']);
+        return response()->json([
+            'message' => 'Logged in successfully',
+            'token'   => $this->generateToken(),
+        ]);
     }
 
     public function logout(Request $request): JsonResponse
     {
-        $request->session()->forget('admin_logged_in');
         return response()->json(['message' => 'Logged out successfully']);
     }
 
     public function checkAuth(Request $request): JsonResponse
     {
-        $loggedIn = $request->session()->get('admin_logged_in', false);
-        return response()->json(['authenticated' => $loggedIn]);
+        $token = $request->header('X-Admin-Token');
+        $valid = $token && hash_equals($this->generateToken(), $token);
+        return response()->json(['authenticated' => $valid]);
     }
 
     // ──────────────────────────────────────────
