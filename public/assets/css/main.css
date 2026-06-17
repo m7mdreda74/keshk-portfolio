@@ -1628,3 +1628,23 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/* ===== Fix horizontal overflow ===== */
+*,
+*::before,
+*::after {
+  max-width: 100%;
+}
+html {
+  overflow-x: hidden !important;
+}
+body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+[data-aos] {
+  pointer-events: none;
+}
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
