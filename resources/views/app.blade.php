@@ -27,6 +27,7 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
   @vite(['resources/js/app.js', 'resources/css/app.css'])
+  <style>html,body{overflow-x:hidden!important;max-width:100vw;}</style>
 </head>
 <body class="index-page">
 
