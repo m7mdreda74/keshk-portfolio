@@ -16,13 +16,13 @@
 
       <form @submit.prevent="doLogin" class="login-form">
         <div class="form-group">
-          <label class="form-label">كلمة المرور</label>
+          <label class="form-label">Password</label>
           <div class="pw-wrapper">
             <input
               :type="showPw ? 'text' : 'password'"
               v-model="password"
               class="form-control"
-              placeholder="أدخل كلمة المرور"
+              placeholder="Enter your password"
               required
               autofocus
               id="admin-password-input"
@@ -45,7 +45,7 @@
         >
           <span v-if="loading" class="spinner"></span>
           <i v-else class="bi bi-box-arrow-in-right"></i>
-          {{ loading ? 'جاري الدخول...' : 'دخول' }}
+          {{ loading ? 'Signing in...' : 'Sign In' }}
         </button>
       </form>
     </div>
@@ -72,7 +72,7 @@ export default {
         await axios.post('/api/admin/login', { password: password.value });
         emit('login-success');
       } catch (e) {
-        error.value = e.response?.data?.message || 'خطأ في الاتصال';
+        error.value = e.response?.data?.message || 'Connection error';
       } finally {
         loading.value = false;
       }

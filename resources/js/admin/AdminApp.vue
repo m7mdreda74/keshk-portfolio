@@ -82,15 +82,15 @@ export default {
     const currentSection = ref('home');
 
     const sectionTitles = {
-      home: 'لوحة التحكم',
-      personal: 'المعلومات الشخصية',
-      skills: 'المهارات',
-      services: 'الخدمات',
-      stats: 'الإحصائيات',
-      projects: 'المشاريع',
-      resume: 'السيرة الذاتية',
-      testimonials: 'التوصيات',
-      messages: 'الرسائل',
+      home: 'Dashboard',
+      personal: 'Personal Info',
+      skills: 'Skills',
+      services: 'Services',
+      stats: 'Statistics',
+      projects: 'Projects',
+      resume: 'Resume',
+      testimonials: 'Testimonials',
+      messages: 'Messages',
     };
 
     // Toast system

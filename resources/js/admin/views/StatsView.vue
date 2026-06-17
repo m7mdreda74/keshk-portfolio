@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-graph-up-arrow" style="color:var(--accent);margin-right:.5rem;"></i>الإحصائيات</h3>
+      <h3><i class="bi bi-graph-up-arrow" style="color:var(--accent);margin-right:.5rem;"></i>Statistics</h3>
       <button class="btn btn-primary" @click="openModal()" id="add-stat-btn">
-        <i class="bi bi-plus-lg"></i> إضافة إحصائية
+        <i class="bi bi-plus-lg"></i> Add Stat
       </button>
     </div>
 
@@ -11,10 +11,10 @@
 
     <div class="admin-card" v-else>
       <div v-if="!items.length" class="empty-state">
-        <i class="bi bi-bar-chart-steps"></i><p>لا توجد إحصائيات بعد</p>
+        <i class="bi bi-bar-chart-steps"></i><p>No statistics added yet</p>
       </div>
       <table v-else class="admin-table">
-        <thead><tr><th>#</th><th>التسمية</th><th>العدد</th><th>إجراءات</th></tr></thead>
+        <thead><tr><th>#</th><th>Label</th><th>Count</th><th>Actions</th></tr></thead>
         <tbody>
           <tr v-for="(item, idx) in items" :key="item.id">
             <td>{{ idx + 1 }}</td>
@@ -35,25 +35,25 @@
       <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
         <div class="modal-box">
           <div class="modal-header">
-            <span class="modal-title">{{ editing ? 'تعديل إحصائية' : 'إضافة إحصائية جديدة' }}</span>
+            <span class="modal-title">{{ editing ? 'Edit Stat' : 'Add New Stat' }}</span>
             <button class="modal-close" @click="showModal = false"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label class="form-label">التسمية</label>
-              <input v-model="form.label" class="form-control" placeholder="مثال: مشاريع منجزة" id="stat-label-input">
+              <label class="form-label">Label</label>
+              <input v-model="form.label" class="form-control" placeholder="e.g. Projects Completed" id="stat-label-input">
             </div>
             <div class="form-group">
-              <label class="form-label">العدد</label>
+              <label class="form-label">Count</label>
               <input v-model.number="form.count" class="form-control" type="number" min="0" placeholder="50" id="stat-count-input">
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showModal = false">إلغاء</button>
+            <button class="btn btn-secondary" @click="showModal = false">Cancel</button>
             <button class="btn btn-primary" @click="saveItem" :disabled="saving" id="stat-save-btn">
               <span v-if="saving" class="spinner"></span>
               <i v-else class="bi bi-floppy-fill"></i>
-              {{ saving ? 'جاري الحفظ...' : 'حفظ' }}
+              {{ saving ? 'Saving...' : 'Save' }}
             </button>
           </div>
         </div>
@@ -64,15 +64,15 @@
       <div v-if="deleteTarget" class="modal-overlay" @click.self="deleteTarget = null">
         <div class="modal-box" style="max-width:400px;">
           <div class="modal-header">
-            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> تأكيد الحذف</span>
+            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Confirm Delete</span>
             <button class="modal-close" @click="deleteTarget = null"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
-            <p style="color:var(--text-muted)">حذف إحصائية <strong style="color:var(--text-primary)">"{{ deleteTarget?.label }}"</strong>؟</p>
+            <p style="color:var(--text-muted)">Delete stat <strong style="color:var(--text-primary)">"{{ deleteTarget?.label }}"</strong>?</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="deleteTarget = null">إلغاء</button>
-            <button class="btn btn-danger" @click="doDelete" id="stat-delete-confirm-btn"><i class="bi bi-trash-fill"></i> حذف</button>
+            <button class="btn btn-secondary" @click="deleteTarget = null">Cancel</button>
+            <button class="btn btn-danger" @click="doDelete" id="stat-delete-confirm-btn"><i class="bi bi-trash-fill"></i> Delete</button>
           </div>
         </div>
       </div>
@@ -112,8 +112,8 @@ export default {
           items.value.push((await axios.post('/api/admin/stats', form.value)).data);
         }
         showModal.value = false;
-        showToast(editing.value ? 'تم التعديل بنجاح ✓' : 'تمت الإضافة بنجاح ✓');
-      } catch (e) { showToast(e.response?.data?.message || 'حدث خطأ', 'error'); }
+        showToast(editing.value ? 'Stat updated successfully ✓' : 'Stat added successfully ✓');
+      } catch (e) { showToast(e.response?.data?.message || 'An error occurred', 'error'); }
       finally { saving.value = false; }
     };
 
@@ -123,8 +123,8 @@ export default {
         await axios.delete(`/api/admin/stats/${deleteTarget.value.id}`);
         items.value = items.value.filter(i => i.id !== deleteTarget.value.id);
         deleteTarget.value = null;
-        showToast('تم الحذف بنجاح');
-      } catch { showToast('حدث خطأ', 'error'); }
+        showToast('Stat deleted successfully');
+      } catch { showToast('An error occurred', 'error'); }
     };
 
     return { items, loading, saving, showModal, editing, deleteTarget, form, openModal, saveItem, confirmDelete, doDelete };

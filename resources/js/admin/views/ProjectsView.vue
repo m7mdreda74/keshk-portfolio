@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-collection-fill" style="color:var(--accent);margin-right:.5rem;"></i>المشاريع</h3>
+      <h3><i class="bi bi-collection-fill" style="color:var(--accent);margin-right:.5rem;"></i>Projects</h3>
       <button class="btn btn-primary" @click="openModal()" id="add-project-btn">
-        <i class="bi bi-plus-lg"></i> إضافة مشروع
+        <i class="bi bi-plus-lg"></i> Add Project
       </button>
     </div>
 
@@ -11,10 +11,10 @@
 
     <div class="admin-card" v-else>
       <div v-if="!items.length" class="empty-state">
-        <i class="bi bi-collection"></i><p>لا توجد مشاريع مضافة بعد</p>
+        <i class="bi bi-collection"></i><p>No projects added yet</p>
       </div>
       <table v-else class="admin-table">
-        <thead><tr><th>#</th><th>المشروع</th><th>الفئة</th><th>رابط</th><th>إجراءات</th></tr></thead>
+        <thead><tr><th>#</th><th>Project</th><th>Category</th><th>Link</th><th>Actions</th></tr></thead>
         <tbody>
           <tr v-for="(item, idx) in items" :key="item.id">
             <td>{{ idx + 1 }}</td>
@@ -52,37 +52,37 @@
       <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
         <div class="modal-box">
           <div class="modal-header">
-            <span class="modal-title">{{ editing ? 'تعديل مشروع' : 'إضافة مشروع جديد' }}</span>
+            <span class="modal-title">{{ editing ? 'Edit Project' : 'Add New Project' }}</span>
             <button class="modal-close" @click="showModal = false"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label class="form-label">عنوان المشروع</label>
-              <input v-model="form.title" class="form-control" placeholder="اسم المشروع" id="project-title-input">
+              <label class="form-label">Project Title</label>
+              <input v-model="form.title" class="form-control" placeholder="Project Name" id="project-title-input">
             </div>
             <div class="form-group">
-              <label class="form-label">الفئة / Category</label>
+              <label class="form-label">Category</label>
               <input v-model="form.category" class="form-control" placeholder="Web App / API / Mobile..." id="project-category-input">
             </div>
             <div class="form-group">
-              <label class="form-label">الوصف</label>
+              <label class="form-label">Description</label>
               <textarea v-model="form.description" class="form-control" rows="4" id="project-desc-input"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label">رابط صورة المشروع (اختياري)</label>
+              <label class="form-label">Image URL (optional)</label>
               <input v-model="form.image" class="form-control" placeholder="assets/img/projects/..." id="project-image-input">
             </div>
             <div class="form-group">
-              <label class="form-label">رابط تفاصيل المشروع (اختياري)</label>
+              <label class="form-label">Project Link (optional)</label>
               <input v-model="form.details_link" class="form-control" placeholder="https://github.com/..." id="project-link-input">
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showModal = false">إلغاء</button>
+            <button class="btn btn-secondary" @click="showModal = false">Cancel</button>
             <button class="btn btn-primary" @click="saveItem" :disabled="saving" id="project-save-btn">
               <span v-if="saving" class="spinner"></span>
               <i v-else class="bi bi-floppy-fill"></i>
-              {{ saving ? 'جاري الحفظ...' : 'حفظ' }}
+              {{ saving ? 'Saving...' : 'Save' }}
             </button>
           </div>
         </div>
@@ -94,15 +94,15 @@
       <div v-if="deleteTarget" class="modal-overlay" @click.self="deleteTarget = null">
         <div class="modal-box" style="max-width:400px;">
           <div class="modal-header">
-            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> تأكيد الحذف</span>
+            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Confirm Delete</span>
             <button class="modal-close" @click="deleteTarget = null"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
-            <p style="color:var(--text-muted)">حذف مشروع <strong style="color:var(--text-primary)">"{{ deleteTarget?.title }}"</strong>؟</p>
+            <p style="color:var(--text-muted)">Delete project <strong style="color:var(--text-primary)">"{{ deleteTarget?.title }}"</strong>?</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="deleteTarget = null">إلغاء</button>
-            <button class="btn btn-danger" @click="doDelete" id="project-delete-confirm-btn"><i class="bi bi-trash-fill"></i> حذف</button>
+            <button class="btn btn-secondary" @click="deleteTarget = null">Cancel</button>
+            <button class="btn btn-danger" @click="doDelete" id="project-delete-confirm-btn"><i class="bi bi-trash-fill"></i> Delete</button>
           </div>
         </div>
       </div>
@@ -144,8 +144,8 @@ export default {
           items.value.push((await axios.post('/api/admin/projects', form.value)).data);
         }
         showModal.value = false;
-        showToast(editing.value ? 'تم تعديل المشروع بنجاح ✓' : 'تمت إضافة المشروع بنجاح ✓');
-      } catch (e) { showToast(e.response?.data?.message || 'حدث خطأ', 'error'); }
+        showToast(editing.value ? 'Project updated successfully ✓' : 'Project added successfully ✓');
+      } catch (e) { showToast(e.response?.data?.message || 'An error occurred', 'error'); }
       finally { saving.value = false; }
     };
 
@@ -155,8 +155,8 @@ export default {
         await axios.delete(`/api/admin/projects/${deleteTarget.value.id}`);
         items.value = items.value.filter(i => i.id !== deleteTarget.value.id);
         deleteTarget.value = null;
-        showToast('تم حذف المشروع بنجاح');
-      } catch { showToast('حدث خطأ', 'error'); }
+        showToast('Project deleted successfully');
+      } catch { showToast('An error occurred', 'error'); }
     };
 
     return { items, loading, saving, showModal, editing, deleteTarget, form, openModal, saveItem, confirmDelete, doDelete };

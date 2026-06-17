@@ -26,17 +26,17 @@ class AdminController extends Controller
         $request->validate(['password' => 'required|string']);
 
         if ($request->password !== config('app.admin_password')) {
-            return response()->json(['message' => 'كلمة المرور غير صحيحة'], 401);
+            return response()->json(['message' => 'Incorrect password'], 401);
         }
 
         $request->session()->put('admin_logged_in', true);
-        return response()->json(['message' => 'تم تسجيل الدخول بنجاح']);
+        return response()->json(['message' => 'Logged in successfully']);
     }
 
     public function logout(Request $request): JsonResponse
     {
         $request->session()->forget('admin_logged_in');
-        return response()->json(['message' => 'تم تسجيل الخروج']);
+        return response()->json(['message' => 'Logged out successfully']);
     }
 
     public function checkAuth(Request $request): JsonResponse
@@ -142,7 +142,7 @@ class AdminController extends Controller
     public function deleteService(Service $service): JsonResponse
     {
         $service->delete();
-        return response()->json(['message' => 'تم الحذف']);
+        return response()->json(['message' => 'Deleted successfully']);
     }
 
     // ──────────────────────────────────────────

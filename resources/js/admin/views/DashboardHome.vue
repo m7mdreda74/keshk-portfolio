@@ -3,8 +3,8 @@
     <!-- Welcome banner -->
     <div class="welcome-banner">
       <div>
-        <h2 class="welcome-title">مرحباً بك، Keshk 👋</h2>
-        <p class="welcome-sub">إدارة محتوى بورتفوليوك من هنا</p>
+        <h2 class="welcome-title">Welcome back, Keshk 👋</h2>
+        <p class="welcome-sub">Manage your portfolio content from here</p>
       </div>
       <div class="welcome-icon">
         <i class="bi bi-stars"></i>
@@ -30,23 +30,23 @@
 
     <!-- Quick Actions -->
     <div class="admin-card">
-      <h3 style="margin-bottom:1.25rem; font-size:1rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.07em;">إجراءات سريعة</h3>
+      <h3 style="margin-bottom:1.25rem; font-size:1rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.07em;">Quick Actions</h3>
       <div class="quick-actions">
         <a href="/" target="_blank" class="quick-action">
           <i class="bi bi-eye"></i>
-          <span>عرض البورتفوليو</span>
+          <span>View Portfolio</span>
         </a>
         <button class="quick-action" @click="$emit('navigate', 'personal')">
           <i class="bi bi-person-badge"></i>
-          <span>تعديل البيانات الشخصية</span>
+          <span>Edit Personal Info</span>
         </button>
         <button class="quick-action" @click="$emit('navigate', 'projects')">
           <i class="bi bi-plus-lg"></i>
-          <span>إضافة مشروع جديد</span>
+          <span>Add New Project</span>
         </button>
         <button class="quick-action" @click="$emit('navigate', 'messages')">
           <i class="bi bi-envelope"></i>
-          <span>عرض الرسائل</span>
+          <span>View Messages</span>
         </button>
       </div>
     </div>
@@ -76,12 +76,12 @@ export default {
         ]);
 
         overviewStats.value = [
-          { label: 'المهارات',      count: skills.data.length,       icon: 'bi-bar-chart-fill',        bg: 'rgba(108,99,255,0.2)',  glow: 'rgba(108,99,255,0.3)' },
-          { label: 'الخدمات',       count: services.data.length,     icon: 'bi-gear-wide-connected',   bg: 'rgba(0,210,255,0.15)', glow: 'rgba(0,210,255,0.2)'  },
-          { label: 'المشاريع',      count: projects.data.length,     icon: 'bi-collection-fill',       bg: 'rgba(255,165,2,0.15)', glow: 'rgba(255,165,2,0.2)'  },
-          { label: 'السيرة الذاتية', count: resume.data.length,      icon: 'bi-file-earmark-text-fill', bg: 'rgba(46,213,115,0.15)', glow: 'rgba(46,213,115,0.2)' },
-          { label: 'التوصيات',      count: testimonials.data.length, icon: 'bi-chat-quote-fill',       bg: 'rgba(255,107,157,0.15)', glow: 'rgba(255,107,157,0.2)' },
-          { label: 'الرسائل',       count: messages.data.length,     icon: 'bi-envelope-fill',         bg: 'rgba(255,71,87,0.15)',  glow: 'rgba(255,71,87,0.2)'  },
+          { label: 'Skills',       count: skills.data.length,       icon: 'bi-bar-chart-fill',         bg: 'rgba(108,99,255,0.2)',   glow: 'rgba(108,99,255,0.3)' },
+          { label: 'Services',     count: services.data.length,     icon: 'bi-gear-wide-connected',    bg: 'rgba(0,210,255,0.15)',   glow: 'rgba(0,210,255,0.2)'  },
+          { label: 'Projects',     count: projects.data.length,     icon: 'bi-collection-fill',        bg: 'rgba(255,165,2,0.15)',   glow: 'rgba(255,165,2,0.2)'  },
+          { label: 'Resume Items', count: resume.data.length,       icon: 'bi-file-earmark-text-fill', bg: 'rgba(46,213,115,0.15)', glow: 'rgba(46,213,115,0.2)' },
+          { label: 'Testimonials', count: testimonials.data.length, icon: 'bi-chat-quote-fill',        bg: 'rgba(255,107,157,0.15)', glow: 'rgba(255,107,157,0.2)' },
+          { label: 'Messages',     count: messages.data.length,     icon: 'bi-envelope-fill',          bg: 'rgba(255,71,87,0.15)',  glow: 'rgba(255,71,87,0.2)'  },
         ];
       } catch (e) {
         console.error(e);

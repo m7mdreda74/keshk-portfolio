@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-bar-chart-fill" style="color:var(--accent);margin-right:.5rem;"></i>المهارات</h3>
+      <h3><i class="bi bi-bar-chart-fill" style="color:var(--accent);margin-right:.5rem;"></i>Skills</h3>
       <button class="btn btn-primary" @click="openModal()" id="add-skill-btn">
-        <i class="bi bi-plus-lg"></i> إضافة مهارة
+        <i class="bi bi-plus-lg"></i> Add Skill
       </button>
     </div>
 
@@ -12,16 +12,16 @@
     <div class="admin-card" v-else>
       <div v-if="!items.length" class="empty-state">
         <i class="bi bi-bar-chart"></i>
-        <p>لا توجد مهارات مضافة بعد</p>
+        <p>No skills added yet</p>
       </div>
       <table v-else class="admin-table">
         <thead>
           <tr>
             <th>#</th>
-            <th>اسم المهارة</th>
-            <th>النسبة</th>
-            <th>مستوى التقدم</th>
-            <th>إجراءات</th>
+            <th>Skill Name</th>
+            <th>Percentage</th>
+            <th>Progress</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -50,25 +50,25 @@
       <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
         <div class="modal-box">
           <div class="modal-header">
-            <span class="modal-title">{{ editing ? 'تعديل مهارة' : 'إضافة مهارة جديدة' }}</span>
+            <span class="modal-title">{{ editing ? 'Edit Skill' : 'Add New Skill' }}</span>
             <button class="modal-close" @click="showModal = false"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label class="form-label">اسم المهارة</label>
-              <input v-model="form.name" class="form-control" placeholder="مثال: Laravel" id="skill-name-input">
+              <label class="form-label">Skill Name</label>
+              <input v-model="form.name" class="form-control" placeholder="e.g. Laravel" id="skill-name-input">
             </div>
             <div class="form-group">
-              <label class="form-label">النسبة: <strong style="color:var(--accent)">{{ form.percentage }}%</strong></label>
+              <label class="form-label">Percentage: <strong style="color:var(--accent)">{{ form.percentage }}%</strong></label>
               <input v-model.number="form.percentage" type="range" min="0" max="100">
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showModal = false">إلغاء</button>
+            <button class="btn btn-secondary" @click="showModal = false">Cancel</button>
             <button class="btn btn-primary" @click="saveItem" :disabled="saving" id="skill-save-btn">
               <span v-if="saving" class="spinner"></span>
               <i v-else class="bi bi-floppy-fill"></i>
-              {{ saving ? 'جاري الحفظ...' : 'حفظ' }}
+              {{ saving ? 'Saving...' : 'Save' }}
             </button>
           </div>
         </div>
@@ -80,16 +80,16 @@
       <div v-if="deleteTarget" class="modal-overlay" @click.self="deleteTarget = null">
         <div class="modal-box" style="max-width:400px;">
           <div class="modal-header">
-            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> تأكيد الحذف</span>
+            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Confirm Delete</span>
             <button class="modal-close" @click="deleteTarget = null"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
-            <p style="color:var(--text-muted)">هل أنت متأكد من حذف مهارة <strong style="color:var(--text-primary)">"{{ deleteTarget?.name }}"</strong>؟ لا يمكن التراجع عن هذا الإجراء.</p>
+            <p style="color:var(--text-muted)">Are you sure you want to delete skill <strong style="color:var(--text-primary)">"{{ deleteTarget?.name }}"</strong>? This action cannot be undone.</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="deleteTarget = null">إلغاء</button>
+            <button class="btn btn-secondary" @click="deleteTarget = null">Cancel</button>
             <button class="btn btn-danger" @click="doDelete" :disabled="saving" id="skill-delete-confirm-btn">
-              <i class="bi bi-trash-fill"></i> حذف نهائياً
+              <i class="bi bi-trash-fill"></i> Delete Permanently
             </button>
           </div>
         </div>
@@ -118,7 +118,6 @@ export default {
       try { items.value = (await axios.get('/api/admin/skills')).data; }
       catch {} finally { loading.value = false; }
     };
-
     onMounted(load);
 
     const openModal = (item = null) => {
@@ -139,9 +138,9 @@ export default {
           items.value.push(res.data);
         }
         showModal.value = false;
-        showToast(editing.value ? 'تم تعديل المهارة بنجاح ✓' : 'تم إضافة المهارة بنجاح ✓');
+        showToast(editing.value ? 'Skill updated successfully ✓' : 'Skill added successfully ✓');
       } catch (e) {
-        showToast(e.response?.data?.message || 'حدث خطأ', 'error');
+        showToast(e.response?.data?.message || 'An error occurred', 'error');
       } finally { saving.value = false; }
     };
 
@@ -152,8 +151,8 @@ export default {
         await axios.delete(`/api/admin/skills/${deleteTarget.value.id}`);
         items.value = items.value.filter(i => i.id !== deleteTarget.value.id);
         deleteTarget.value = null;
-        showToast('تم حذف المهارة بنجاح');
-      } catch { showToast('حدث خطأ أثناء الحذف', 'error'); }
+        showToast('Skill deleted successfully');
+      } catch { showToast('An error occurred', 'error'); }
       finally { saving.value = false; }
     };
 

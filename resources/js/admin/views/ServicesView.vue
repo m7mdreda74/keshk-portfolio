@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-gear-wide-connected" style="color:var(--accent);margin-right:.5rem;"></i>الخدمات</h3>
+      <h3><i class="bi bi-gear-wide-connected" style="color:var(--accent);margin-right:.5rem;"></i>Services</h3>
       <button class="btn btn-primary" @click="openModal()" id="add-service-btn">
-        <i class="bi bi-plus-lg"></i> إضافة خدمة
+        <i class="bi bi-plus-lg"></i> Add Service
       </button>
     </div>
 
@@ -11,7 +11,7 @@
 
     <div v-else class="services-grid">
       <div v-if="!items.length" class="admin-card">
-        <div class="empty-state"><i class="bi bi-gear"></i><p>لا توجد خدمات مضافة بعد</p></div>
+        <div class="empty-state"><i class="bi bi-gear"></i><p>No services added yet</p></div>
       </div>
 
       <div v-for="item in items" :key="item.id" class="service-card">
@@ -21,7 +21,7 @@
         <div class="service-info">
           <h4>{{ item.title }}</h4>
           <p>{{ item.description }}</p>
-          <span class="icon-hint">أيقونة: <code>{{ item.icon }}</code></span>
+          <span class="icon-hint">Icon: <code>{{ item.icon }}</code></span>
         </div>
         <div class="service-actions">
           <button class="btn btn-secondary btn-sm" @click="openModal(item)"><i class="bi bi-pencil-fill"></i></button>
@@ -35,32 +35,32 @@
       <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
         <div class="modal-box">
           <div class="modal-header">
-            <span class="modal-title">{{ editing ? 'تعديل خدمة' : 'إضافة خدمة جديدة' }}</span>
+            <span class="modal-title">{{ editing ? 'Edit Service' : 'Add New Service' }}</span>
             <button class="modal-close" @click="showModal = false"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label class="form-label">عنوان الخدمة</label>
+              <label class="form-label">Service Title</label>
               <input v-model="form.title" class="form-control" placeholder="Web Development" id="service-title-input">
             </div>
             <div class="form-group">
-              <label class="form-label">الوصف</label>
+              <label class="form-label">Description</label>
               <textarea v-model="form.description" class="form-control" rows="4" id="service-desc-input"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label">Bootstrap Icon Class <a href="https://icons.getbootstrap.com/" target="_blank" style="color:var(--accent);font-size:0.8rem;margin-left:.5rem;">تصفح الأيقونات ↗</a></label>
+              <label class="form-label">Bootstrap Icon Class <a href="https://icons.getbootstrap.com/" target="_blank" style="color:var(--accent);font-size:0.8rem;margin-left:.5rem;">Browse Icons ↗</a></label>
               <input v-model="form.icon" class="form-control" placeholder="bi-code-slash" id="service-icon-input">
               <div v-if="form.icon" style="margin-top:.75rem;color:var(--text-muted);">
-                معاينة: <i :class="['bi', form.icon]" style="font-size:1.5rem;color:var(--accent);margin-left:.5rem;"></i>
+                Preview: <i :class="['bi', form.icon]" style="font-size:1.5rem;color:var(--accent);margin-left:.5rem;"></i>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showModal = false">إلغاء</button>
+            <button class="btn btn-secondary" @click="showModal = false">Cancel</button>
             <button class="btn btn-primary" @click="saveItem" :disabled="saving" id="service-save-btn">
               <span v-if="saving" class="spinner"></span>
               <i v-else class="bi bi-floppy-fill"></i>
-              {{ saving ? 'جاري الحفظ...' : 'حفظ' }}
+              {{ saving ? 'Saving...' : 'Save' }}
             </button>
           </div>
         </div>
@@ -72,16 +72,16 @@
       <div v-if="deleteTarget" class="modal-overlay" @click.self="deleteTarget = null">
         <div class="modal-box" style="max-width:400px;">
           <div class="modal-header">
-            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> تأكيد الحذف</span>
+            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Confirm Delete</span>
             <button class="modal-close" @click="deleteTarget = null"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
-            <p style="color:var(--text-muted)">هل أنت متأكد من حذف خدمة <strong style="color:var(--text-primary)">"{{ deleteTarget?.title }}"</strong>؟</p>
+            <p style="color:var(--text-muted)">Are you sure you want to delete <strong style="color:var(--text-primary)">"{{ deleteTarget?.title }}"</strong>?</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="deleteTarget = null">إلغاء</button>
+            <button class="btn btn-secondary" @click="deleteTarget = null">Cancel</button>
             <button class="btn btn-danger" @click="doDelete" id="service-delete-confirm-btn">
-              <i class="bi bi-trash-fill"></i> حذف نهائياً
+              <i class="bi bi-trash-fill"></i> Delete
             </button>
           </div>
         </div>
@@ -126,12 +126,11 @@ export default {
           const idx = items.value.findIndex(i => i.id === editing.value.id);
           if (idx !== -1) items.value[idx] = res.data;
         } else {
-          const res = await axios.post('/api/admin/services', form.value);
-          items.value.push(res.data);
+          items.value.push((await axios.post('/api/admin/services', form.value)).data);
         }
         showModal.value = false;
-        showToast(editing.value ? 'تم تعديل الخدمة بنجاح ✓' : 'تم إضافة الخدمة بنجاح ✓');
-      } catch (e) { showToast(e.response?.data?.message || 'حدث خطأ', 'error'); }
+        showToast(editing.value ? 'Service updated successfully ✓' : 'Service added successfully ✓');
+      } catch (e) { showToast(e.response?.data?.message || 'An error occurred', 'error'); }
       finally { saving.value = false; }
     };
 
@@ -141,8 +140,8 @@ export default {
         await axios.delete(`/api/admin/services/${deleteTarget.value.id}`);
         items.value = items.value.filter(i => i.id !== deleteTarget.value.id);
         deleteTarget.value = null;
-        showToast('تم حذف الخدمة بنجاح');
-      } catch { showToast('حدث خطأ', 'error'); }
+        showToast('Service deleted successfully');
+      } catch { showToast('An error occurred', 'error'); }
     };
 
     return { items, loading, saving, showModal, editing, deleteTarget, form, openModal, saveItem, confirmDelete, doDelete };

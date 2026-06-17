@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-person-badge-fill" style="color:var(--accent);margin-right:.5rem;"></i>المعلومات الشخصية</h3>
+      <h3><i class="bi bi-person-badge-fill" style="color:var(--accent);margin-right:.5rem;"></i>Personal Info</h3>
       <button class="btn btn-primary" @click="save" :disabled="saving" id="save-personal-btn">
         <span v-if="saving" class="spinner"></span>
         <i v-else class="bi bi-floppy-fill"></i>
-        {{ saving ? 'جاري الحفظ...' : 'حفظ التغييرات' }}
+        {{ saving ? 'Saving...' : 'Save Changes' }}
       </button>
     </div>
 
@@ -16,34 +16,34 @@
     <div v-else class="admin-card">
       <div class="form-grid">
         <div class="form-group">
-          <label class="form-label">الاسم الكامل</label>
-          <input v-model="form.name" class="form-control" placeholder="محمد رضا كشك" id="pi-name">
+          <label class="form-label">Full Name</label>
+          <input v-model="form.name" class="form-control" placeholder="Mohamed Reda Keshk" id="pi-name">
         </div>
         <div class="form-group">
-          <label class="form-label">المسمى الوظيفي</label>
+          <label class="form-label">Job Title</label>
           <input v-model="form.profile" class="form-control" placeholder="Backend Developer" id="pi-profile">
         </div>
         <div class="form-group">
-          <label class="form-label">البريد الإلكتروني</label>
+          <label class="form-label">Email</label>
           <input v-model="form.email" class="form-control" type="email" placeholder="example@gmail.com" id="pi-email">
         </div>
         <div class="form-group">
-          <label class="form-label">رقم الهاتف</label>
+          <label class="form-label">Phone</label>
           <input v-model="form.phone" class="form-control" placeholder="+20 1xx xxx xxxx" id="pi-phone">
         </div>
         <div class="form-group form-full">
-          <label class="form-label">نبذة شخصية (Bio)</label>
-          <textarea v-model="form.bio" class="form-control" rows="5" placeholder="اكتب نبذة عن نفسك..." id="pi-bio"></textarea>
+          <label class="form-label">Bio</label>
+          <textarea v-model="form.bio" class="form-control" rows="5" placeholder="Write something about yourself..." id="pi-bio"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">رابط صورة البروفايل</label>
+          <label class="form-label">Profile Image URL</label>
           <input v-model="form.profile_image" class="form-control" placeholder="assets/img/profile.jpg" id="pi-profile-image">
           <div v-if="form.profile_image" class="img-preview">
             <img :src="form.profile_image" alt="Profile" @error="e => e.target.style.display='none'">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">رابط صورة الخلفية (Hero)</label>
+          <label class="form-label">Hero Background Image URL</label>
           <input v-model="form.hero_image" class="form-control" placeholder="assets/img/hero.jpg" id="pi-hero-image">
           <div v-if="form.hero_image" class="img-preview">
             <img :src="form.hero_image" alt="Hero" @error="e => e.target.style.display='none'">
@@ -80,9 +80,9 @@ export default {
       saving.value = true;
       try {
         await axios.put('/api/admin/personal-info', form.value);
-        showToast('تم حفظ المعلومات الشخصية بنجاح ✓');
+        showToast('Personal info saved successfully ✓');
       } catch (e) {
-        showToast(e.response?.data?.message || 'حدث خطأ أثناء الحفظ', 'error');
+        showToast(e.response?.data?.message || 'An error occurred', 'error');
       } finally {
         saving.value = false;
       }

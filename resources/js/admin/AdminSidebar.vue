@@ -35,9 +35,9 @@
 
     <!-- Logout -->
     <div class="sidebar-footer">
-      <button class="nav-item nav-logout" @click="$emit('logout')" title="تسجيل الخروج" id="admin-logout-btn">
+      <button class="nav-item nav-logout" @click="$emit('logout')" title="Logout" id="admin-logout-btn">
         <i class="bi bi-box-arrow-right"></i>
-        <span v-show="!isCollapsed">تسجيل الخروج</span>
+        <span v-show="!isCollapsed">Logout</span>
       </button>
     </div>
   </aside>
@@ -54,15 +54,15 @@ export default {
     const isCollapsed = ref(false);
 
     const navItems = [
-      { key: 'home',         label: 'الرئيسية',          icon: 'bi-grid-1x2-fill' },
-      { key: 'personal',     label: 'المعلومات الشخصية', icon: 'bi-person-badge-fill' },
-      { key: 'skills',       label: 'المهارات',           icon: 'bi-bar-chart-fill' },
-      { key: 'services',     label: 'الخدمات',            icon: 'bi-gear-wide-connected' },
-      { key: 'stats',        label: 'الإحصائيات',         icon: 'bi-graph-up-arrow' },
-      { key: 'projects',     label: 'المشاريع',           icon: 'bi-collection-fill' },
-      { key: 'resume',       label: 'السيرة الذاتية',     icon: 'bi-file-earmark-text-fill' },
-      { key: 'testimonials', label: 'التوصيات',           icon: 'bi-chat-quote-fill' },
-      { key: 'messages',     label: 'الرسائل',            icon: 'bi-envelope-fill' },
+      { key: 'home',         label: 'Dashboard',        icon: 'bi-grid-1x2-fill' },
+      { key: 'personal',     label: 'Personal Info',     icon: 'bi-person-badge-fill' },
+      { key: 'skills',       label: 'Skills',            icon: 'bi-bar-chart-fill' },
+      { key: 'services',     label: 'Services',          icon: 'bi-gear-wide-connected' },
+      { key: 'stats',        label: 'Statistics',        icon: 'bi-graph-up-arrow' },
+      { key: 'projects',     label: 'Projects',          icon: 'bi-collection-fill' },
+      { key: 'resume',       label: 'Resume',            icon: 'bi-file-earmark-text-fill' },
+      { key: 'testimonials', label: 'Testimonials',      icon: 'bi-chat-quote-fill' },
+      { key: 'messages',     label: 'Messages',          icon: 'bi-envelope-fill' },
     ];
 
     return { isCollapsed, navItems };

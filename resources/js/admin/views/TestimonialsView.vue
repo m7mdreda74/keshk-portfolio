@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-chat-quote-fill" style="color:var(--accent);margin-right:.5rem;"></i>التوصيات</h3>
+      <h3><i class="bi bi-chat-quote-fill" style="color:var(--accent);margin-right:.5rem;"></i>Testimonials</h3>
       <button class="btn btn-primary" @click="openModal()" id="add-testimonial-btn">
-        <i class="bi bi-plus-lg"></i> إضافة توصية
+        <i class="bi bi-plus-lg"></i> Add Testimonial
       </button>
     </div>
 
@@ -11,7 +11,7 @@
 
     <div v-else class="testimonials-grid">
       <div v-if="!items.length" class="admin-card">
-        <div class="empty-state"><i class="bi bi-chat-quote"></i><p>لا توجد توصيات بعد</p></div>
+        <div class="empty-state"><i class="bi bi-chat-quote"></i><p>No testimonials yet</p></div>
       </div>
 
       <div v-for="item in items" :key="item.id" class="testimonial-card">
@@ -32,8 +32,8 @@
           </div>
         </div>
         <div class="t-actions">
-          <button class="btn btn-secondary btn-sm" @click="openModal(item)"><i class="bi bi-pencil-fill"></i> تعديل</button>
-          <button class="btn btn-danger btn-sm" @click="confirmDelete(item)"><i class="bi bi-trash-fill"></i> حذف</button>
+          <button class="btn btn-secondary btn-sm" @click="openModal(item)"><i class="bi bi-pencil-fill"></i> Edit</button>
+          <button class="btn btn-danger btn-sm" @click="confirmDelete(item)"><i class="bi bi-trash-fill"></i> Delete</button>
         </div>
       </div>
     </div>
@@ -43,37 +43,37 @@
       <div v-if="showModal" class="modal-overlay" @click.self="showModal = false">
         <div class="modal-box">
           <div class="modal-header">
-            <span class="modal-title">{{ editing ? 'تعديل توصية' : 'إضافة توصية جديدة' }}</span>
+            <span class="modal-title">{{ editing ? 'Edit Testimonial' : 'Add New Testimonial' }}</span>
             <button class="modal-close" @click="showModal = false"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label class="form-label">الاسم</label>
-              <input v-model="form.name" class="form-control" placeholder="اسم الشخص" id="testimonial-name-input">
+              <label class="form-label">Name</label>
+              <input v-model="form.name" class="form-control" placeholder="Person's name" id="testimonial-name-input">
             </div>
             <div class="form-group">
-              <label class="form-label">المسمى الوظيفي</label>
+              <label class="form-label">Role / Position</label>
               <input v-model="form.role" class="form-control" placeholder="CEO at XYZ" id="testimonial-role-input">
             </div>
             <div class="form-group">
-              <label class="form-label">التوصية</label>
+              <label class="form-label">Quote</label>
               <textarea v-model="form.quote" class="form-control" rows="4" id="testimonial-quote-input"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label">التقييم: <strong style="color:var(--warning)">{{ '★'.repeat(form.stars) }}</strong> ({{ form.stars }}/5)</label>
+              <label class="form-label">Rating: <strong style="color:var(--warning)">{{ '★'.repeat(form.stars) }}</strong> ({{ form.stars }}/5)</label>
               <input v-model.number="form.stars" type="range" min="1" max="5" step="1">
             </div>
             <div class="form-group">
-              <label class="form-label">رابط الصورة (اختياري)</label>
+              <label class="form-label">Photo URL (optional)</label>
               <input v-model="form.image" class="form-control" placeholder="https://..." id="testimonial-image-input">
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="showModal = false">إلغاء</button>
+            <button class="btn btn-secondary" @click="showModal = false">Cancel</button>
             <button class="btn btn-primary" @click="saveItem" :disabled="saving" id="testimonial-save-btn">
               <span v-if="saving" class="spinner"></span>
               <i v-else class="bi bi-floppy-fill"></i>
-              {{ saving ? 'جاري الحفظ...' : 'حفظ' }}
+              {{ saving ? 'Saving...' : 'Save' }}
             </button>
           </div>
         </div>
@@ -85,15 +85,15 @@
       <div v-if="deleteTarget" class="modal-overlay" @click.self="deleteTarget = null">
         <div class="modal-box" style="max-width:400px;">
           <div class="modal-header">
-            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> تأكيد الحذف</span>
+            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Confirm Delete</span>
             <button class="modal-close" @click="deleteTarget = null"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
-            <p style="color:var(--text-muted)">حذف توصية <strong style="color:var(--text-primary)">"{{ deleteTarget?.name }}"</strong>؟</p>
+            <p style="color:var(--text-muted)">Delete testimonial from <strong style="color:var(--text-primary)">"{{ deleteTarget?.name }}"</strong>?</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="deleteTarget = null">إلغاء</button>
-            <button class="btn btn-danger" @click="doDelete" id="testimonial-delete-confirm-btn"><i class="bi bi-trash-fill"></i> حذف</button>
+            <button class="btn btn-secondary" @click="deleteTarget = null">Cancel</button>
+            <button class="btn btn-danger" @click="doDelete" id="testimonial-delete-confirm-btn"><i class="bi bi-trash-fill"></i> Delete</button>
           </div>
         </div>
       </div>
@@ -135,8 +135,8 @@ export default {
           items.value.push((await axios.post('/api/admin/testimonials', form.value)).data);
         }
         showModal.value = false;
-        showToast(editing.value ? 'تم التعديل بنجاح ✓' : 'تمت الإضافة بنجاح ✓');
-      } catch (e) { showToast(e.response?.data?.message || 'حدث خطأ', 'error'); }
+        showToast(editing.value ? 'Testimonial updated successfully ✓' : 'Testimonial added successfully ✓');
+      } catch (e) { showToast(e.response?.data?.message || 'An error occurred', 'error'); }
       finally { saving.value = false; }
     };
 
@@ -146,8 +146,8 @@ export default {
         await axios.delete(`/api/admin/testimonials/${deleteTarget.value.id}`);
         items.value = items.value.filter(i => i.id !== deleteTarget.value.id);
         deleteTarget.value = null;
-        showToast('تم الحذف بنجاح');
-      } catch { showToast('حدث خطأ', 'error'); }
+        showToast('Testimonial deleted successfully');
+      } catch { showToast('An error occurred', 'error'); }
     };
 
     return { items, loading, saving, showModal, editing, deleteTarget, form, openModal, saveItem, confirmDelete, doDelete };

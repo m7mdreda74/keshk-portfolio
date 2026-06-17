@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="section-header">
-      <h3><i class="bi bi-envelope-fill" style="color:var(--accent);margin-right:.5rem;"></i>رسائل التواصل</h3>
-      <span class="badge badge-accent" v-if="items.length">{{ items.length }} رسالة</span>
+      <h3><i class="bi bi-envelope-fill" style="color:var(--accent);margin-right:.5rem;"></i>Messages</h3>
+      <span class="badge badge-accent" v-if="items.length">{{ items.length }} message{{ items.length !== 1 ? 's' : '' }}</span>
     </div>
 
     <div class="admin-card" v-if="loading" style="text-align:center;padding:3rem;"><div class="spinner"></div></div>
 
     <div class="admin-card" v-else>
       <div v-if="!items.length" class="empty-state">
-        <i class="bi bi-envelope-open"></i><p>لا توجد رسائل بعد</p>
+        <i class="bi bi-envelope-open"></i><p>No messages yet</p>
       </div>
 
       <table v-else class="admin-table">
-        <thead><tr><th>#</th><th>الاسم</th><th>البريد</th><th>الموضوع</th><th>الرسالة</th><th>التاريخ</th><th>إجراءات</th></tr></thead>
+        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Date</th><th>Actions</th></tr></thead>
         <tbody>
           <tr v-for="(msg, idx) in items" :key="msg.id">
             <td>{{ idx + 1 }}</td>
@@ -24,7 +24,7 @@
             <td><span class="badge badge-accent">{{ msg.subject }}</span></td>
             <td>
               <button class="btn btn-secondary btn-sm" @click="viewMessage(msg)">
-                <i class="bi bi-eye"></i> عرض
+                <i class="bi bi-eye"></i> View
               </button>
             </td>
             <td style="font-size:0.8rem;color:var(--text-muted);">{{ formatDate(msg.created_at) }}</td>
@@ -48,16 +48,16 @@
           </div>
           <div class="modal-body">
             <div class="msg-meta">
-              <div><span class="msg-meta-label">من:</span> {{ viewTarget.name }}</div>
-              <div><span class="msg-meta-label">البريد:</span>
+              <div><span class="msg-meta-label">From:</span> {{ viewTarget.name }}</div>
+              <div><span class="msg-meta-label">Email:</span>
                 <a :href="`mailto:${viewTarget.email}`" style="color:var(--accent)">{{ viewTarget.email }}</a>
               </div>
-              <div><span class="msg-meta-label">التاريخ:</span> {{ formatDate(viewTarget.created_at) }}</div>
+              <div><span class="msg-meta-label">Date:</span> {{ formatDate(viewTarget.created_at) }}</div>
             </div>
             <div class="msg-body">{{ viewTarget.message }}</div>
             <div style="margin-top:1.5rem;">
               <a :href="`mailto:${viewTarget.email}?subject=Re: ${viewTarget.subject}`" class="btn btn-primary">
-                <i class="bi bi-reply-fill"></i> رد على الرسالة
+                <i class="bi bi-reply-fill"></i> Reply
               </a>
             </div>
           </div>
@@ -70,15 +70,15 @@
       <div v-if="deleteTarget" class="modal-overlay" @click.self="deleteTarget = null">
         <div class="modal-box" style="max-width:400px;">
           <div class="modal-header">
-            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> تأكيد الحذف</span>
+            <span class="modal-title" style="color:var(--danger)"><i class="bi bi-exclamation-triangle-fill"></i> Confirm Delete</span>
             <button class="modal-close" @click="deleteTarget = null"><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
-            <p style="color:var(--text-muted)">حذف رسالة من <strong style="color:var(--text-primary)">{{ deleteTarget?.name }}</strong>؟</p>
+            <p style="color:var(--text-muted)">Delete message from <strong style="color:var(--text-primary)">{{ deleteTarget?.name }}</strong>?</p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" @click="deleteTarget = null">إلغاء</button>
-            <button class="btn btn-danger" @click="doDelete" id="msg-delete-confirm-btn"><i class="bi bi-trash-fill"></i> حذف</button>
+            <button class="btn btn-secondary" @click="deleteTarget = null">Cancel</button>
+            <button class="btn btn-danger" @click="doDelete" id="msg-delete-confirm-btn"><i class="bi bi-trash-fill"></i> Delete</button>
           </div>
         </div>
       </div>
@@ -107,14 +107,13 @@ export default {
         await axios.delete(`/api/admin/messages/${deleteTarget.value.id}`);
         items.value = items.value.filter(i => i.id !== deleteTarget.value.id);
         deleteTarget.value = null;
-        showToast('تم حذف الرسالة بنجاح');
-      } catch { showToast('حدث خطأ', 'error'); }
+        showToast('Message deleted successfully');
+      } catch { showToast('An error occurred', 'error'); }
     };
 
     const formatDate = (dt) => {
       if (!dt) return '';
-      const d = new Date(dt);
-      return d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      return new Date(dt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     };
 
     return { items, loading, viewTarget, deleteTarget, viewMessage, confirmDelete, doDelete, formatDate };
@@ -126,7 +125,7 @@ export default {
 .email-link { color: var(--accent-light); text-decoration: none; font-size: 0.85rem; }
 .email-link:hover { text-decoration: underline; }
 .msg-meta { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; }
-.msg-meta-label { color: var(--text-muted); margin-right: 0.5rem; }
+.msg-meta-label { color: var(--text-muted); margin-right: 0.5rem; font-weight: 600; }
 .msg-body { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; font-size: 0.9rem; line-height: 1.7; white-space: pre-wrap; color: var(--text-primary); }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
