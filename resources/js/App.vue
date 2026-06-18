@@ -81,29 +81,45 @@ export default {
 
     onMounted(async () => {
       try {
+        // 1. Show cached data immediately (makes repeat visits instant)
+        const cached = localStorage.getItem('keshk-portfolio-data');
+        if (cached) {
+          try {
+            portfolioData.value = JSON.parse(cached);
+            loading.value = false;
+          } catch (e) {
+            localStorage.removeItem('keshk-portfolio-data');
+          }
+        }
+
+        // 2. Always fetch fresh data in background
         const response = await axios.get('/api/portfolio-data');
         portfolioData.value = response.data;
         loading.value = false;
 
-        // Add scroll event listener
-        window.addEventListener('scroll', handleScroll);
-        // Trigger initial check
-        handleScroll();
+        // 3. Update cache (filter out large base64 images to keep cache small)
+        try {
+          const cacheable = {
+            ...response.data,
+            projects: response.data.projects?.map(p => ({ ...p, image: null })),
+            testimonials: response.data.testimonials?.map(t => ({ ...t, image: null })),
+          };
+          localStorage.setItem('keshk-portfolio-data', JSON.stringify(cacheable));
+        } catch (e) { /* localStorage quota exceeded — skip caching */ }
 
-        // Initialize AOS animation library
+        // 4. Init scroll + AOS
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
         setTimeout(() => {
           if (window.AOS) {
-            window.AOS.init({
-              duration: 600,
-              easing: 'ease-in-out',
-              once: true,
-              mirror: false
-            });
+            window.AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false });
           }
         }, 300);
 
       } catch (error) {
         console.error('Failed to load portfolio data:', error);
+        // If we have cached data already showing, don't blank the screen
+        if (!portfolioData.value) loading.value = false;
       }
     });
 
