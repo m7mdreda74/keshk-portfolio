@@ -13,7 +13,6 @@ use App\Models\Testimonial;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -314,18 +313,6 @@ class AdminController extends Controller
         return response()->json(['message' => 'Deleted successfully']);
     }
 
-    // ──────────────────────────────────────────
-    //  IMAGE UPLOAD
-    // ──────────────────────────────────────────
-
-    public function uploadImage(Request $request): JsonResponse
-    {
-        $request->validate(['image' => 'required|image|max:4096']);
-
-        $path = $request->file('image')->store('uploads', 'public');
-
-        return response()->json(['url' => Storage::disk('public')->url($path)]);
-    }
 
     // ──────────────────────────────────────────
     //  CONTACT MESSAGES
