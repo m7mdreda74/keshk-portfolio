@@ -34,22 +34,25 @@
   <!-- Preconnect for fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Non-render-blocking Google Fonts (preload + onload trick) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- Vendor CSS -->
+  <!-- Critical CSS only (needed for first paint) -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-  <!-- Main CSS -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+  <!-- Non-critical CSS → loaded async (not needed for first paint) -->
+  <link rel="preload" as="style" href="{{ asset('assets/vendor/aos/aos.css') }}" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" onload="this.onload=null;this.rel='stylesheet'">
 
   @vite(['resources/js/app.js', 'resources/css/app.css'])
 
   <style>
-    html, body { overflow-x: hidden !important; max-width: 100vw; }
+    /* Prevent white flash — dark background shows immediately */
+    html, body { overflow-x: hidden !important; max-width: 100vw; background: #0a0612; }
 
     /* ── Static hero shown instantly before Vue loads ── */
     #static-hero {
