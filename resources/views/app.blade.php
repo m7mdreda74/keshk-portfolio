@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <!-- Google Search Console Verification -->
-  <meta name="google-site-verification" content="cYfbul7x8GN-I3KA7D5uJwYiAWB2to9LfUhOmVtnzfo">
+  <meta name="google-site-verification" content="hgqGWeh38gPcBQuhPcYlM_Nf7D9NBDLc7ZBB3HEFc6U">
 
   <!-- Primary Meta Tags -->
   <title>Mohamed Keshk — Backend Developer | Laravel & Vue.js Portfolio</title>
