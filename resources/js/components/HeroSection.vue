@@ -1,9 +1,9 @@
 <template>
   <section id="hero" class="hero section dark-background">
 
-    <!-- Background image -->
+    <!-- Background image: always use the preloaded static path unless a real URL is stored in DB -->
     <img
-      :src="personalInfo.hero_image || '/assets/img/hero-img.png'"
+      :src="heroImageSrc"
       alt="Hero background"
       fetchpriority="high"
       loading="eager"
@@ -104,6 +104,18 @@ export default {
     },
   },
   setup(props) {
+    const STATIC_HERO = '/assets/img/hero-img.png';
+
+    // LCP fix: base64 images from DB bypass the preloaded resource and slow LCP.
+    // Only use a non-base64 URL; otherwise fall back to the preloaded static image.
+    const heroImageSrc = computed(() => {
+      const img = props.personalInfo?.hero_image;
+      if (img && !img.startsWith('data:') && img !== '') {
+        return img;
+      }
+      return STATIC_HERO;
+    });
+
     const nameChars = computed(() => {
       if (!props.personalInfo || !props.personalInfo.name) return [];
       return props.personalInfo.name.split('');
@@ -127,6 +139,7 @@ export default {
     });
 
     return {
+      heroImageSrc,
       nameChars,
     };
   },
