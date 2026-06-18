@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="cYfbul7x8GN-I3KA7D5uJwYiAWB2to9LfUhOmVtnzfo">
+
   <!-- Primary Meta Tags -->
   <title>Mohamed Keshk — Backend Developer | Laravel & Vue.js Portfolio</title>
   <meta name="description" content="Portfolio of Mohamed Keshk (كشك), a Backend Developer specializing in Laravel, PHP, RESTful APIs, and SaaS architecture. Available for freelance and full-time opportunities.">
