@@ -3,63 +3,76 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PortfolioController;
 use App\Http\Controllers\Api\ContactController;
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\PersonalInfoController;
+use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\StatController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ResumeItemController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Middleware\AdminAuthenticated;
 
-// Public portfolio routes
+// ──────────────────────────────────────────
+//  Public portfolio routes
+// ──────────────────────────────────────────
 Route::get('/portfolio-data', [PortfolioController::class, 'index']);
-Route::post('/contact', [ContactController::class, 'store']);
+Route::post('/contact',       [ContactController::class,  'store']);
 
-// Admin auth (no middleware on these)
-Route::post('/admin/login', [AdminController::class, 'login']);
-Route::post('/admin/logout', [AdminController::class, 'logout']);
-Route::get('/admin/check-auth', [AdminController::class, 'checkAuth']);
+// ──────────────────────────────────────────
+//  Admin auth (no middleware)
+// ──────────────────────────────────────────
+Route::post('/admin/login',      [AuthController::class, 'login']);
+Route::post('/admin/logout',     [AuthController::class, 'logout']);
+Route::get('/admin/check-auth',  [AuthController::class, 'checkAuth']);
 
-// Admin protected routes
+// ──────────────────────────────────────────
+//  Admin protected routes
+// ──────────────────────────────────────────
 Route::middleware([AdminAuthenticated::class])->prefix('admin')->group(function () {
 
     // Personal Info
-    Route::get('/personal-info', [AdminController::class, 'getPersonalInfo']);
-    Route::put('/personal-info', [AdminController::class, 'updatePersonalInfo']);
+    Route::get('/personal-info', [PersonalInfoController::class, 'show']);
+    Route::put('/personal-info', [PersonalInfoController::class, 'update']);
 
     // Skills
-    Route::get('/skills', [AdminController::class, 'getSkills']);
-    Route::post('/skills', [AdminController::class, 'createSkill']);
-    Route::put('/skills/{skill}', [AdminController::class, 'updateSkill']);
-    Route::delete('/skills/{skill}', [AdminController::class, 'deleteSkill']);
+    Route::get('/skills',           [SkillController::class, 'index']);
+    Route::post('/skills',          [SkillController::class, 'store']);
+    Route::put('/skills/{skill}',   [SkillController::class, 'update']);
+    Route::delete('/skills/{skill}',[SkillController::class, 'destroy']);
 
     // Services
-    Route::get('/services', [AdminController::class, 'getServices']);
-    Route::post('/services', [AdminController::class, 'createService']);
-    Route::put('/services/{service}', [AdminController::class, 'updateService']);
-    Route::delete('/services/{service}', [AdminController::class, 'deleteService']);
+    Route::get('/services',              [ServiceController::class, 'index']);
+    Route::post('/services',             [ServiceController::class, 'store']);
+    Route::put('/services/{service}',    [ServiceController::class, 'update']);
+    Route::delete('/services/{service}', [ServiceController::class, 'destroy']);
 
     // Stats
-    Route::get('/stats', [AdminController::class, 'getStats']);
-    Route::post('/stats', [AdminController::class, 'createStat']);
-    Route::put('/stats/{stat}', [AdminController::class, 'updateStat']);
-    Route::delete('/stats/{stat}', [AdminController::class, 'deleteStat']);
+    Route::get('/stats',          [StatController::class, 'index']);
+    Route::post('/stats',         [StatController::class, 'store']);
+    Route::put('/stats/{stat}',   [StatController::class, 'update']);
+    Route::delete('/stats/{stat}',[StatController::class, 'destroy']);
 
     // Projects
-    Route::get('/projects', [AdminController::class, 'getProjects']);
-    Route::post('/projects', [AdminController::class, 'createProject']);
-    Route::put('/projects/{project}', [AdminController::class, 'updateProject']);
-    Route::delete('/projects/{project}', [AdminController::class, 'deleteProject']);
+    Route::get('/projects',              [ProjectController::class, 'index']);
+    Route::post('/projects',             [ProjectController::class, 'store']);
+    Route::put('/projects/{project}',    [ProjectController::class, 'update']);
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy']);
 
     // Resume Items
-    Route::get('/resume-items', [AdminController::class, 'getResumeItems']);
-    Route::post('/resume-items', [AdminController::class, 'createResumeItem']);
-    Route::put('/resume-items/{resumeItem}', [AdminController::class, 'updateResumeItem']);
-    Route::delete('/resume-items/{resumeItem}', [AdminController::class, 'deleteResumeItem']);
+    Route::get('/resume-items',                [ResumeItemController::class, 'index']);
+    Route::post('/resume-items',               [ResumeItemController::class, 'store']);
+    Route::put('/resume-items/{resumeItem}',   [ResumeItemController::class, 'update']);
+    Route::delete('/resume-items/{resumeItem}',[ResumeItemController::class, 'destroy']);
 
     // Testimonials
-    Route::get('/testimonials', [AdminController::class, 'getTestimonials']);
-    Route::post('/testimonials', [AdminController::class, 'createTestimonial']);
-    Route::put('/testimonials/{testimonial}', [AdminController::class, 'updateTestimonial']);
-    Route::delete('/testimonials/{testimonial}', [AdminController::class, 'deleteTestimonial']);
+    Route::get('/testimonials',                  [TestimonialController::class, 'index']);
+    Route::post('/testimonials',                 [TestimonialController::class, 'store']);
+    Route::put('/testimonials/{testimonial}',    [TestimonialController::class, 'update']);
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy']);
 
     // Contact Messages
-    Route::get('/messages', [AdminController::class, 'getMessages']);
-    Route::delete('/messages/{contactMessage}', [AdminController::class, 'deleteMessage']);
+    Route::get('/messages',                        [MessageController::class, 'index']);
+    Route::delete('/messages/{contactMessage}',    [MessageController::class, 'destroy']);
 });
-
