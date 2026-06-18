@@ -156,8 +156,8 @@ export default {
     };
 
     const compressImage = (file) => new Promise((resolve) => {
-      const MAX_W = 800;
-      const QUALITY = 0.75;
+      const MAX_W = 600;
+      const QUALITY = 0.65;
       const reader = new FileReader();
       reader.onload = (ev) => {
         const img = new Image();
