@@ -26,13 +26,13 @@
             <div class="portfolio-card-inner">
               <!-- Image Wrapper with hover overlay for Title & Links -->
               <div class="portfolio-img-wrap">
-                <img :src="project.image ? '/' + project.image : '/assets/img/portfolio/serv5.jpg'" class="img-fluid" :alt="project.title">
+                <img :src="project.image || '/assets/img/portfolio/serv5.jpg'" class="img-fluid" :alt="project.title">
                 
                 <!-- Overlay (Visible on Hover over Image) -->
                 <div class="portfolio-img-overlay">
                   <h4 class="portfolio-project-title">{{ project.title }}</h4>
                   <div class="portfolio-action-links">
-                    <a :href="project.image ? '/' + project.image : '/assets/img/portfolio/serv5.jpg'" 
+                    <a :href="project.image || '/assets/img/portfolio/serv5.jpg'" 
                        :title="project.title" 
                        data-gallery="portfolio-gallery" 
                        class="glightbox preview-link">
