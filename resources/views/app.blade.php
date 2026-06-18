@@ -13,6 +13,7 @@
   <link rel="canonical" href="https://keshk-portfolio.vercel.app/">
 
   <!-- JSON-LD: Person schema (tells Google exactly who you are) -->
+  @verbatim
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,7 +37,7 @@
   }
   </script>
 
-  <!-- JSON-LD: WebSite schema (enables sitelinks search box) -->
+  <!-- JSON-LD: WebSite schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,6 +52,8 @@
     }
   }
   </script>
+  @endverbatim
+
 
 
   <!-- Open Graph / Facebook -->
