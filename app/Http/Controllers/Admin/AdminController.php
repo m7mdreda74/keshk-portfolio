@@ -315,6 +315,19 @@ class AdminController extends Controller
     }
 
     // ──────────────────────────────────────────
+    //  IMAGE UPLOAD
+    // ──────────────────────────────────────────
+
+    public function uploadImage(Request $request): JsonResponse
+    {
+        $request->validate(['image' => 'required|image|max:4096']);
+
+        $path = $request->file('image')->store('uploads', 'public');
+
+        return response()->json(['url' => Storage::disk('public')->url($path)]);
+    }
+
+    // ──────────────────────────────────────────
     //  CONTACT MESSAGES
     // ──────────────────────────────────────────
 

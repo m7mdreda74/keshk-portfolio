@@ -69,8 +69,26 @@
               <textarea v-model="form.description" class="form-control" rows="4" id="project-desc-input"></textarea>
             </div>
             <div class="form-group">
-              <label class="form-label">Image URL (optional)</label>
-              <input v-model="form.image" class="form-control" placeholder="assets/img/projects/..." id="project-image-input">
+              <label class="form-label">Project Image (optional)</label>
+              <div class="upload-zone" :class="{ 'has-image': imagePreview || form.image }" @click="$refs.fileInput.click()" id="project-image-upload-zone">
+                <input ref="fileInput" type="file" accept="image/*" style="display:none" @change="onFileChange" id="project-image-file-input">
+                <template v-if="imagePreview || form.image">
+                  <img :src="imagePreview || form.image" class="upload-preview" alt="Preview">
+                  <button type="button" class="upload-remove-btn" @click.stop="removeImage" title="Remove image">
+                    <i class="bi bi-x-circle-fill"></i>
+                  </button>
+                </template>
+                <template v-else>
+                  <div class="upload-placeholder">
+                    <i class="bi bi-cloud-arrow-up-fill upload-icon"></i>
+                    <span>Click to upload image</span>
+                    <small>PNG, JPG, GIF · max 4 MB</small>
+                  </div>
+                </template>
+              </div>
+              <div v-if="uploadProgress" class="upload-progress-bar">
+                <div class="upload-progress-fill"></div>
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label">Project Link (optional)</label>
@@ -121,21 +139,57 @@ export default {
     const items = ref([]); const loading = ref(true); const saving = ref(false);
     const showModal = ref(false); const editing = ref(null); const deleteTarget = ref(null);
     const form = ref({ title: '', category: '', description: '', image: '', details_link: '' });
+    const imagePreview = ref(null);
+    const uploadProgress = ref(false);
+    const pendingFile = ref(null);
+    const fileInput = ref(null);
 
     const load = async () => { try { items.value = (await axios.get('/api/admin/projects')).data; } catch {} finally { loading.value = false; } };
     onMounted(load);
 
     const openModal = (item = null) => {
       editing.value = item;
+      imagePreview.value = null;
+      pendingFile.value = null;
       form.value = item
         ? { title: item.title, category: item.category, description: item.description, image: item.image || '', details_link: item.details_link || '' }
         : { title: '', category: '', description: '', image: '', details_link: '' };
       showModal.value = true;
     };
 
+    const onFileChange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      pendingFile.value = file;
+      imagePreview.value = URL.createObjectURL(file);
+    };
+
+    const removeImage = () => {
+      pendingFile.value = null;
+      imagePreview.value = null;
+      form.value.image = '';
+      if (fileInput.value) fileInput.value.value = '';
+    };
+
+    const uploadPendingFile = async () => {
+      if (!pendingFile.value) return;
+      uploadProgress.value = true;
+      try {
+        const fd = new FormData();
+        fd.append('image', pendingFile.value);
+        const token = localStorage.getItem('admin_token');
+        const res = await axios.post('/api/admin/upload-image', fd, {
+          headers: { 'Content-Type': 'multipart/form-data', 'X-Admin-Token': token }
+        });
+        form.value.image = res.data.url;
+        pendingFile.value = null;
+      } finally { uploadProgress.value = false; }
+    };
+
     const saveItem = async () => {
       saving.value = true;
       try {
+        await uploadPendingFile();
         if (editing.value) {
           const res = await axios.put(`/api/admin/projects/${editing.value.id}`, form.value);
           const idx = items.value.findIndex(i => i.id === editing.value.id);
@@ -159,7 +213,7 @@ export default {
       } catch { showToast('An error occurred', 'error'); }
     };
 
-    return { items, loading, saving, showModal, editing, deleteTarget, form, openModal, saveItem, confirmDelete, doDelete };
+    return { items, loading, saving, showModal, editing, deleteTarget, form, openModal, saveItem, confirmDelete, doDelete, imagePreview, uploadProgress, onFileChange, removeImage, fileInput };
   }
 };
 </script>
@@ -172,4 +226,82 @@ export default {
 .project-cell p { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem; }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
+
+/* Upload Zone */
+.upload-zone {
+  position: relative;
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--bg-input);
+  overflow: hidden;
+}
+.upload-zone:hover { border-color: var(--accent); background: rgba(var(--accent-rgb, 99,102,241), 0.05); }
+.upload-zone.has-image { border-style: solid; min-height: 180px; }
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  user-select: none;
+}
+.upload-placeholder span { font-size: 0.9rem; font-weight: 500; }
+.upload-placeholder small { font-size: 0.75rem; opacity: 0.7; }
+.upload-icon { font-size: 2.2rem; color: var(--accent); }
+
+.upload-preview {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.upload-remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.upload-remove-btn:hover { background: var(--danger); }
+
+.upload-progress-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+.upload-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  animation: progress-anim 1.2s ease-in-out infinite;
+  transform-origin: left;
+}
+@keyframes progress-anim {
+  0% { transform: scaleX(0); }
+  50% { transform: scaleX(0.7); }
+  100% { transform: scaleX(1); }
+}
 </style>

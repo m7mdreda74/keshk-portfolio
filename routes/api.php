@@ -58,6 +58,9 @@ Route::middleware([AdminAuthenticated::class])->prefix('admin')->group(function 
     Route::put('/testimonials/{testimonial}', [AdminController::class, 'updateTestimonial']);
     Route::delete('/testimonials/{testimonial}', [AdminController::class, 'deleteTestimonial']);
 
+    // Image Upload
+    Route::post('/upload-image', [AdminController::class, 'uploadImage']);
+
     // Contact Messages
     Route::get('/messages', [AdminController::class, 'getMessages']);
     Route::delete('/messages/{contactMessage}', [AdminController::class, 'deleteMessage']);
