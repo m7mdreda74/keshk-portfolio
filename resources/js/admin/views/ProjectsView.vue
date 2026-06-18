@@ -155,17 +155,36 @@ export default {
       showModal.value = true;
     };
 
-    const onFileChange = (e) => {
+    const compressImage = (file) => new Promise((resolve) => {
+      const MAX_W = 800;
+      const QUALITY = 0.75;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => {
+          const scale = Math.min(1, MAX_W / img.width);
+          const canvas = document.createElement('canvas');
+          canvas.width  = Math.round(img.width  * scale);
+          canvas.height = Math.round(img.height * scale);
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', QUALITY));
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    const onFileChange = async (e) => {
       const file = e.target.files[0];
       if (!file) return;
       uploadProgress.value = true;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        form.value.image = ev.target.result;   // base64 data URL stored directly
-        imagePreview.value = ev.target.result;
+      try {
+        const compressed = await compressImage(file);
+        form.value.image  = compressed;
+        imagePreview.value = compressed;
+      } finally {
         uploadProgress.value = false;
-      };
-      reader.readAsDataURL(file);
+      }
     };
 
     const removeImage = () => {
