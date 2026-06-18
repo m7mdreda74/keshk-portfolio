@@ -6,10 +6,52 @@
 
   <!-- Primary Meta Tags -->
   <title>Mohamed Keshk — Backend Developer | Laravel & Vue.js Portfolio</title>
-  <meta name="description" content="Portfolio of Mohamed Keshk, a Backend Developer specializing in Laravel, PHP, RESTful APIs, and SaaS architecture. Available for freelance and full-time opportunities.">
-  <meta name="keywords" content="Mohamed Keshk, Backend Developer, Laravel, PHP, Vue.js, RESTful API, SaaS, Portfolio">
+  <meta name="description" content="Portfolio of Mohamed Keshk (كشك), a Backend Developer specializing in Laravel, PHP, RESTful APIs, and SaaS architecture. Available for freelance and full-time opportunities.">
+  <meta name="keywords" content="Mohamed Keshk, Keshk, كشك, محمد كشك, Backend Developer, Laravel Developer Egypt, PHP Developer, Vue.js, RESTful API, SaaS, Portfolio">
   <meta name="author" content="Mohamed Reda Keshk">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://keshk-portfolio.vercel.app/">
+
+  <!-- JSON-LD: Person schema (tells Google exactly who you are) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohamed Reda Keshk",
+    "alternateName": ["Keshk", "كشك", "محمد كشك"],
+    "url": "https://keshk-portfolio.vercel.app/",
+    "image": "https://keshk-portfolio.vercel.app/assets/img/profile-img.png",
+    "jobTitle": "Backend Developer",
+    "description": "Backend Developer specializing in Laravel, PHP, RESTful APIs, and SaaS architecture.",
+    "knowsAbout": ["Laravel", "PHP", "Vue.js", "RESTful API", "SaaS", "MySQL", "Backend Development"],
+    "nationality": "Egyptian",
+    "sameAs": [
+      "https://github.com/m7mdreda74",
+      "https://keshk-portfolio.vercel.app/"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: WebSite schema (enables sitelinks search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Mohamed Keshk Portfolio",
+    "alternateName": "Keshk Portfolio",
+    "url": "https://keshk-portfolio.vercel.app/",
+    "description": "Portfolio of Mohamed Keshk, Backend Developer specializing in Laravel and PHP.",
+    "author": {
+      "@type": "Person",
+      "name": "Mohamed Reda Keshk"
+    }
+  }
+  </script>
+
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">

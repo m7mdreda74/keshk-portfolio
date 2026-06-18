@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Main Portfolio Page -->
+  <url>
+    <loc>https://keshk-portfolio.vercel.app/</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://keshk-portfolio.vercel.app/assets/img/hero-img.png</image:loc>
+      <image:title>Mohamed Keshk — Backend Developer Portfolio</image:title>
+      <image:caption>Portfolio of Mohamed Reda Keshk, Backend Developer specializing in Laravel and PHP</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://keshk-portfolio.vercel.app/assets/img/profile-img.png</image:loc>
+      <image:title>Mohamed Keshk Profile Photo</image:title>
+    </image:image>
+  </url>
+
+</urlset>
