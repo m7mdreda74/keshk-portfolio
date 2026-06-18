@@ -209,8 +209,8 @@ class AdminController extends Controller
             'title'        => 'required|string|max:255',
             'category'     => 'required|string|max:100',
             'description'  => 'required|string',
-            'image'        => 'nullable|string',
-            'details_link' => 'nullable|url',
+            'image'        => 'nullable',
+            'details_link' => 'nullable|string',
         ]);
         return response()->json(Project::create($data), 201);
     }
@@ -221,8 +221,8 @@ class AdminController extends Controller
             'title'        => 'required|string|max:255',
             'category'     => 'required|string|max:100',
             'description'  => 'required|string',
-            'image'        => 'nullable|string',
-            'details_link' => 'nullable|url',
+            'image'        => 'nullable',
+            'details_link' => 'nullable|string',
         ]);
         $project->update($data);
         return response()->json($project);

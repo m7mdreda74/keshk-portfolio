@@ -141,7 +141,6 @@ export default {
     const form = ref({ title: '', category: '', description: '', image: '', details_link: '' });
     const imagePreview = ref(null);
     const uploadProgress = ref(false);
-    const pendingFile = ref(null);
     const fileInput = ref(null);
 
     const load = async () => { try { items.value = (await axios.get('/api/admin/projects')).data; } catch {} finally { loading.value = false; } };
@@ -149,8 +148,7 @@ export default {
 
     const openModal = (item = null) => {
       editing.value = item;
-      imagePreview.value = null;
-      pendingFile.value = null;
+      imagePreview.value = item?.image || null;
       form.value = item
         ? { title: item.title, category: item.category, description: item.description, image: item.image || '', details_link: item.details_link || '' }
         : { title: '', category: '', description: '', image: '', details_link: '' };
@@ -160,36 +158,25 @@ export default {
     const onFileChange = (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      pendingFile.value = file;
-      imagePreview.value = URL.createObjectURL(file);
+      uploadProgress.value = true;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        form.value.image = ev.target.result;   // base64 data URL stored directly
+        imagePreview.value = ev.target.result;
+        uploadProgress.value = false;
+      };
+      reader.readAsDataURL(file);
     };
 
     const removeImage = () => {
-      pendingFile.value = null;
       imagePreview.value = null;
       form.value.image = '';
       if (fileInput.value) fileInput.value.value = '';
     };
 
-    const uploadPendingFile = async () => {
-      if (!pendingFile.value) return;
-      uploadProgress.value = true;
-      try {
-        const fd = new FormData();
-        fd.append('image', pendingFile.value);
-        const token = localStorage.getItem('admin_token');
-        const res = await axios.post('/api/admin/upload-image', fd, {
-          headers: { 'Content-Type': 'multipart/form-data', 'X-Admin-Token': token }
-        });
-        form.value.image = res.data.url;
-        pendingFile.value = null;
-      } finally { uploadProgress.value = false; }
-    };
-
     const saveItem = async () => {
       saving.value = true;
       try {
-        await uploadPendingFile();
         if (editing.value) {
           const res = await axios.put(`/api/admin/projects/${editing.value.id}`, form.value);
           const idx = items.value.findIndex(i => i.id === editing.value.id);
