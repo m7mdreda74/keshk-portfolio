@@ -3,8 +3,10 @@
 
     <!-- Background image -->
     <img
-      :src="personalInfo.hero_image ? '/' + personalInfo.hero_image : '/assets/img/hero-img.png'"
-      alt=""
+      :src="personalInfo.hero_image || '/assets/img/hero-img.png'"
+      alt="Hero background"
+      fetchpriority="high"
+      loading="eager"
       data-aos="fade-in"
     >
 

@@ -23,9 +23,9 @@ Route::post('/contact',       [ContactController::class,  'store']);
 // ──────────────────────────────────────────
 //  Admin auth (no middleware)
 // ──────────────────────────────────────────
-Route::post('/admin/login',      [AuthController::class, 'login']);
-Route::post('/admin/logout',     [AuthController::class, 'logout']);
-Route::get('/admin/check-auth',  [AuthController::class, 'checkAuth']);
+Route::post('/admin/login',     [AuthController::class, 'login'])->middleware('throttle:5,1');
+Route::post('/admin/logout',    [AuthController::class, 'logout']);
+Route::get('/admin/check-auth', [AuthController::class, 'checkAuth']);
 
 // ──────────────────────────────────────────
 //  Admin protected routes

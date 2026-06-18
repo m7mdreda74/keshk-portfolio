@@ -1,0 +1,429 @@
+{
+  "info": {
+    "name": "Keshk Portfolio API",
+    "description": "Complete API collection for Keshk Portfolio — public endpoints and admin CRUD. Import this file into Postman, set the `base_url` and `admin_token` variables, then run the collection.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url",    "value": "https://keshk-portfolio.vercel.app/api", "type": "string" },
+    { "key": "admin_token", "value": "",  "type": "string", "description": "Set this after running Admin Login" }
+  ],
+  "item": [
+    {
+      "name": "🌐 Public",
+      "item": [
+        {
+          "name": "GET Portfolio Data",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/portfolio-data",
+            "description": "Returns all public portfolio data in a single call"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('Has required keys', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.all.keys('personal_info','skills','services','stats','projects','resume_items','testimonials');",
+                  "});",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Contact Message",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/contact",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"subject\": \"Test Subject\",\n  \"message\": \"This is a test message from Postman.\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is JSON', () => pm.response.to.be.json);",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Contact — Validation Error (422)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/contact",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 422', () => pm.response.to.have.status(422));",
+                  "pm.test('Response is JSON not HTML', () => {",
+                  "  pm.expect(pm.response.text()).to.not.include('<!DOCTYPE');",
+                  "  pm.response.to.be.json;",
+                  "});",
+                  "pm.test('Has errors field', () => {",
+                  "  pm.expect(pm.response.json()).to.have.property('errors');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "🔐 Admin Auth",
+      "item": [
+        {
+          "name": "POST Login (correct password)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/admin/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"{{admin_password}}\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns token', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.property('token');",
+                  "  pm.collectionVariables.set('admin_token', body.token);",
+                  "});",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Login (wrong password) — expect 401",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/admin/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"password\": \"wrong-password\"}" }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 401', () => pm.response.to.have.status(401));",
+                  "pm.test('Response is JSON not HTML', () => {",
+                  "  pm.expect(pm.response.text()).to.not.include('<!DOCTYPE');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET Check Auth",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/admin/check-auth",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('authenticated is boolean', () => {",
+                  "  pm.expect(pm.response.json()).to.have.property('authenticated');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/admin/logout",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "🗂️ Admin — Projects",
+      "item": [
+        {
+          "name": "GET All Projects",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/admin/projects",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response is array', () => pm.expect(pm.response.json()).to.be.an('array'));",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Create Project",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/admin/projects",
+            "header": [
+              { "key": "X-Admin-Token", "value": "{{admin_token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"My New Project\",\n  \"category\": \"web\",\n  \"description\": \"Project description here\",\n  \"details_link\": \"https://example.com\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Returns created project', () => {",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.property('id');",
+                  "  pm.collectionVariables.set('project_id', body.id);",
+                  "});",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT Update Project",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/admin/projects/{{project_id}}",
+            "header": [
+              { "key": "X-Admin-Token", "value": "{{admin_token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Project Title\",\n  \"category\": \"mobile\",\n  \"description\": \"Updated description\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE Project",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/admin/projects/{{project_id}}",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('No 500 error', () => pm.expect(pm.response.code).to.be.below(500));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE Non-existent Project — expect 404 JSON",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/admin/projects/99999",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }]
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 404', () => pm.response.to.have.status(404));",
+                  "pm.test('Response is JSON not HTML', () => {",
+                  "  pm.expect(pm.response.text()).to.not.include('<!DOCTYPE');",
+                  "  pm.response.to.be.json;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "🎯 Admin — Skills",
+      "item": [
+        {
+          "name": "GET All Skills",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/skills", "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }] },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));"] } }]
+        },
+        {
+          "name": "POST Create Skill",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/admin/skills",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Laravel\", \"percentage\": 95}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 201', () => pm.response.to.have.status(201));"] } }]
+        }
+      ]
+    },
+    {
+      "name": "🛡️ Admin — Services",
+      "item": [
+        {
+          "name": "GET All Services",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/services", "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }] },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));"] } }]
+        },
+        {
+          "name": "POST Create Service",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/admin/services",
+            "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }, { "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"title\": \"Web Development\", \"description\": \"Full-stack web apps\", \"icon\": \"bi bi-code-slash\"}" }
+          },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 201', () => pm.response.to.have.status(201));"] } }]
+        }
+      ]
+    },
+    {
+      "name": "📊 Admin — Stats",
+      "item": [
+        {
+          "name": "GET All Stats",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/stats", "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }] },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));"] } }]
+        }
+      ]
+    },
+    {
+      "name": "📚 Admin — Resume Items",
+      "item": [
+        {
+          "name": "GET All Resume Items",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/resume-items", "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }] },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));"] } }]
+        }
+      ]
+    },
+    {
+      "name": "💬 Admin — Testimonials",
+      "item": [
+        {
+          "name": "GET All Testimonials",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/testimonials", "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }] },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));"] } }]
+        }
+      ]
+    },
+    {
+      "name": "📩 Admin — Messages",
+      "item": [
+        {
+          "name": "GET All Messages",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/messages", "header": [{ "key": "X-Admin-Token", "value": "{{admin_token}}" }] },
+          "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));"] } }]
+        }
+      ]
+    },
+    {
+      "name": "🔒 Security Tests",
+      "item": [
+        {
+          "name": "GET Admin Projects without token — expect 401",
+          "request": { "method": "GET", "url": "{{base_url}}/admin/projects" },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 401', () => pm.response.to.have.status(401));",
+                  "pm.test('Response is JSON not HTML', () => {",
+                  "  pm.expect(pm.response.text()).to.not.include('<!DOCTYPE');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Login brute-force (5+ attempts) — expect 429",
+          "request": {
+            "method": "POST", "url": "{{base_url}}/admin/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"password\": \"wrong\"}" }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Rate limited (429) or rejected (401)', () => {",
+                  "  pm.expect([401, 429]).to.include(pm.response.code);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
