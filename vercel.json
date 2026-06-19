@@ -25,10 +25,6 @@
       "dest": "/robots.txt"
     },
     {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
-    },
-    {
       "src": "/google(.*)\\.html",
       "dest": "/google$1.html"
     },
