@@ -12,7 +12,8 @@ class ExampleTest extends TestCase
      */
     public function test_the_application_returns_a_successful_response(): void
     {
-        $response = $this->get('/');
+        // withoutVite() mocks Vite so tests pass in CI without npm build artifacts
+        $response = $this->withoutVite()->get('/');
 
         $response->assertStatus(200);
     }
