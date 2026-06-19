@@ -5,6 +5,9 @@
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.2"
+    },
+    "api/sitemap.php": {
+      "runtime": "vercel-php@0.7.2"
     }
   },
   "routes": [
@@ -27,6 +30,10 @@
     {
       "src": "/google(.*)\\.html",
       "dest": "/google$1.html"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/api/sitemap.php"
     },
     {
       "src": "/(.*)",
