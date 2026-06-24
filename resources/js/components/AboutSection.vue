@@ -21,7 +21,7 @@
               <p><strong>Email: </strong> <a :href="'mailto:' + personalInfo.email" class="about-email-link">{{ personalInfo.email }}</a></p>
               <p><strong>Phone: </strong> <a :href="'tel:' + personalInfo.phone" class="about-phone-link">{{ personalInfo.phone }}</a></p>
               <div class="mt-4">
-                <a href="https://drive.google.com/file/d/1tUSqTA0OpZpJMyQ2YsC132RfSmYnycxh/view?usp=sharing" target="_blank" rel="noopener" class="about-resume-btn">
+                <a :href="personalInfo.resume_link || '#'" target="_blank" rel="noopener" class="about-resume-btn">
                   <i class="bi bi-file-earmark-pdf-fill me-2"></i>Download Resume
                 </a>
               </div>

@@ -51,7 +51,7 @@
         <a href="#about" class="hero-btn hero-btn--primary">
           <i class="bi bi-person-lines-fill me-2"></i>About Me
         </a>
-        <a href="https://drive.google.com/file/d/1tUSqTA0OpZpJMyQ2YsC132RfSmYnycxh/view?usp=sharing" target="_blank" rel="noopener" class="hero-btn hero-btn--resume">
+        <a :href="personalInfo.resume_link || '#'" target="_blank" rel="noopener" class="hero-btn hero-btn--resume">
           <i class="bi bi-file-earmark-pdf-fill me-2"></i>Download Resume
         </a>
         <a href="#contact" class="hero-btn hero-btn--outline">
