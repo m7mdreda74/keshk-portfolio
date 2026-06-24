@@ -82,13 +82,23 @@ export default {
     onMounted(async () => {
       try {
         // 1. Show cached data immediately (makes repeat visits instant)
-        const cached = localStorage.getItem('keshk-portfolio-data');
-        if (cached) {
-          try {
-            portfolioData.value = JSON.parse(cached);
-            loading.value = false;
-          } catch (e) {
-            localStorage.removeItem('keshk-portfolio-data');
+        const CACHE_KEY = 'keshk-portfolio-data';
+        const CACHE_VERSION = 'v2'; // bump this whenever new DB fields are added
+        const cachedVersion = localStorage.getItem('keshk-portfolio-version');
+
+        if (cachedVersion !== CACHE_VERSION) {
+          // Stale cache — wipe it so we don't show missing fields
+          localStorage.removeItem(CACHE_KEY);
+          localStorage.setItem('keshk-portfolio-version', CACHE_VERSION);
+        } else {
+          const cached = localStorage.getItem(CACHE_KEY);
+          if (cached) {
+            try {
+              portfolioData.value = JSON.parse(cached);
+              loading.value = false;
+            } catch (e) {
+              localStorage.removeItem(CACHE_KEY);
+            }
           }
         }
 
@@ -104,7 +114,7 @@ export default {
             projects: response.data.projects?.map(p => ({ ...p, image: null })),
             testimonials: response.data.testimonials?.map(t => ({ ...t, image: null })),
           };
-          localStorage.setItem('keshk-portfolio-data', JSON.stringify(cacheable));
+          localStorage.setItem(CACHE_KEY, JSON.stringify(cacheable));
         } catch (e) { /* localStorage quota exceeded — skip caching */ }
 
         // 4. Init scroll + AOS
