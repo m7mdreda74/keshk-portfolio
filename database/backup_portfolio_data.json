@@ -2,243 +2,393 @@
     "personal_infos": [
         {
             "id": 1,
-            "name": "Keshk",
-            "profile": "Full Stack Web Developer",
-            "email": "keshk@example.com",
-            "phone": "+20 100 123 4567",
-            "bio": "Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-            "profile_image": "assets\/img\/profile-img.jpg",
-            "hero_image": "assets\/img\/hero-img.jpg",
-            "created_at": "2026-06-12 16:59:27",
-            "updated_at": "2026-06-12 16:59:27"
+            "name": "Mohamed Reda Keshk",
+            "profile": "Full-Stack Developer",
+            "email": "m7mdreda74@gmail.com",
+            "phone": "+201099670724",
+            "bio": "Full-Stack Developer experienced in building web applications with Vue.js on the frontend and Laravel on the backend. Delivered SaaS, ERP, e-commerce, real-estate, and content platforms, connecting responsive interfaces to secure REST APIs and relational databases. Comfortable with multi-tenant architecture, role-based access control, real-time features, testing, and production workflows.",
+            "profile_image": "assets\/img\/profile-img.png",
+            "hero_image": "assets\/img\/hero-img.png",
+            "resume_link": "https:\/\/drive.google.com\/file\/d\/1tUSqTA0OpZpJMyQ2YsC132RfSmYnycxh\/view?usp=sharing",
+            "linkedin": "https:\/\/www.linkedin.com\/in\/m0hamed-keshk",
+            "github": "https:\/\/github.com\/m7mdreda74",
+            "whatsapp": "http:\/\/wa.me\/201099670724",
+            "telegram": "http:\/\/t.me\/m7md_reda74",
+            "facebook": "https:\/\/www.facebook.com\/share\/1JNP9vrxzq\/",
+            "instagram": "https:\/\/www.instagram.com\/m7md_reda74",
+            "copyright": "© 2026 Mohamed Reda Keshk. All Rights Reserved.",
+            "created_at": "2026-09-29 17:25:56",
+            "updated_at": "2026-09-29 17:25:56"
         }
     ],
     "skills": [
         {
             "id": 1,
-            "name": "HTML",
-            "percentage": 100,
-            "created_at": "2026-06-12 16:59:27",
-            "updated_at": "2026-06-12 16:59:27"
+            "name": "Laravel & PHP",
+            "percentage": 95,
+            "created_at": "2026-09-29 17:25:56",
+            "updated_at": "2026-09-29 17:25:56"
         },
         {
             "id": 2,
-            "name": "CSS",
+            "name": "Vue.js 3 & Inertia.js",
             "percentage": 95,
-            "created_at": "2026-06-12 16:59:27",
-            "updated_at": "2026-06-12 16:59:27"
+            "created_at": "2026-09-29 17:25:57",
+            "updated_at": "2026-09-29 17:25:57"
         },
         {
             "id": 3,
-            "name": "JavaScript",
-            "percentage": 90,
-            "created_at": "2026-06-12 16:59:28",
-            "updated_at": "2026-06-12 16:59:28"
+            "name": "RESTful APIs & Sanctum",
+            "percentage": 95,
+            "created_at": "2026-09-29 17:25:57",
+            "updated_at": "2026-09-29 17:25:57"
         },
         {
             "id": 4,
-            "name": "Laravel",
-            "percentage": 95,
-            "created_at": "2026-06-12 16:59:28",
-            "updated_at": "2026-06-12 16:59:28"
+            "name": "MySQL & Relational DB",
+            "percentage": 90,
+            "created_at": "2026-09-29 17:25:58",
+            "updated_at": "2026-09-29 17:25:58"
         },
         {
             "id": 5,
-            "name": "Vue.js",
-            "percentage": 85,
-            "created_at": "2026-06-12 16:59:28",
-            "updated_at": "2026-06-12 16:59:28"
+            "name": "Multi-Tenant Architecture",
+            "percentage": 90,
+            "created_at": "2026-09-29 17:25:58",
+            "updated_at": "2026-09-29 17:25:58"
         },
         {
             "id": 6,
-            "name": "PHP",
-            "percentage": 95,
-            "created_at": "2026-06-12 16:59:28",
-            "updated_at": "2026-06-12 16:59:28"
+            "name": "Filament PHP & RBAC",
+            "percentage": 90,
+            "created_at": "2026-09-29 17:25:59",
+            "updated_at": "2026-09-29 17:25:59"
+        },
+        {
+            "id": 7,
+            "name": "JavaScript & TypeScript",
+            "percentage": 90,
+            "created_at": "2026-09-29 17:25:59",
+            "updated_at": "2026-09-29 17:25:59"
+        },
+        {
+            "id": 8,
+            "name": "Tailwind CSS & Next.js",
+            "percentage": 85,
+            "created_at": "2026-09-29 17:26:00",
+            "updated_at": "2026-09-29 17:26:00"
+        },
+        {
+            "id": 9,
+            "name": "Git & GitHub Actions",
+            "percentage": 90,
+            "created_at": "2026-09-29 17:26:00",
+            "updated_at": "2026-09-29 17:26:00"
+        },
+        {
+            "id": 10,
+            "name": "WebSockets & Real-Time",
+            "percentage": 85,
+            "created_at": "2026-09-29 17:26:01",
+            "updated_at": "2026-09-29 17:26:01"
+        },
+        {
+            "id": 11,
+            "name": "PostgreSQL & Optimization",
+            "percentage": 85,
+            "created_at": "2026-09-29 17:26:01",
+            "updated_at": "2026-09-29 17:26:01"
+        },
+        {
+            "id": 12,
+            "name": "Testing & PHPUnit",
+            "percentage": 85,
+            "created_at": "2026-09-29 17:26:02",
+            "updated_at": "2026-09-29 17:26:02"
         }
     ],
     "services": [
         {
             "id": 1,
-            "title": "Web Design",
-            "description": "We create visually stunning and user-friendly web designs that are fully responsive and customized to match your branding perfectly.",
-            "icon": "bi bi-activity",
-            "created_at": "2026-06-12 16:59:28",
-            "updated_at": "2026-06-12 16:59:28"
+            "title": "Full-Stack Web Development",
+            "description": "Building modern, high-performance web applications with responsive Vue.js 3 \/ Inertia.js interfaces connected to robust Laravel backends.",
+            "icon": "bi bi-globe",
+            "created_at": "2026-09-29 17:26:02",
+            "updated_at": "2026-09-29 17:26:02"
         },
         {
             "id": 2,
-            "title": "Web Development",
-            "description": "Robust and scalable full stack web applications built using cutting-edge backend and frontend frameworks like Laravel and Vue.js.",
-            "icon": "bi bi-broadcast",
-            "created_at": "2026-06-12 16:59:28",
-            "updated_at": "2026-06-12 16:59:28"
+            "title": "Multi-Tenant SaaS Platforms",
+            "description": "Architecting scalable cloud SaaS platforms with database-per-tenant isolation, automated onboarding, subdomain routing, and billing gateways.",
+            "icon": "bi bi-server",
+            "created_at": "2026-09-29 17:26:03",
+            "updated_at": "2026-09-29 17:26:03"
         },
         {
             "id": 3,
-            "title": "API Development",
-            "description": "Fast, secure, and clean RESTful API structures built to integrate with mobile applications, web apps, or third-party tools.",
-            "icon": "bi bi-easel",
-            "created_at": "2026-06-12 16:59:29",
-            "updated_at": "2026-06-12 16:59:29"
+            "title": "Retail & Supermarket ERP Systems",
+            "description": "Engineering comprehensive ERP solutions with high-speed POS terminals, barcode scanning, cashier shifts, double-entry accounting, and WhatsApp reports.",
+            "icon": "bi bi-shop",
+            "created_at": "2026-09-29 17:26:03",
+            "updated_at": "2026-09-29 17:26:03"
         },
         {
             "id": 4,
-            "title": "E-Commerce Solutions",
-            "description": "Custom online store development with integrated shopping carts, inventory systems, and secure payment processing.",
-            "icon": "bi bi-bounding-box-circles",
-            "created_at": "2026-06-12 16:59:29",
-            "updated_at": "2026-06-12 16:59:29"
+            "title": "RESTful API & Integration",
+            "description": "Designing secure, versioned RESTful APIs with Laravel Sanctum, idempotent transactions, payment gateways, and third-party webhook integrations.",
+            "icon": "bi bi-code-slash",
+            "created_at": "2026-09-29 17:26:04",
+            "updated_at": "2026-09-29 17:26:04"
         },
         {
             "id": 5,
-            "title": "Responsive Design",
-            "description": "Ensuring your website is fully operational and looks exceptional across all mobile phones, tablets, laptops, and monitors.",
-            "icon": "bi bi-calendar4-week",
-            "created_at": "2026-06-12 16:59:29",
-            "updated_at": "2026-06-12 16:59:29"
+            "title": "Admin Dashboards & RBAC CMS",
+            "description": "Building rich administrative portals with Filament PHP, dynamic page builders, Spatie RBAC permission matrices, and interactive business analytics.",
+            "icon": "bi bi-layout-text-sidebar-reverse",
+            "created_at": "2026-09-29 17:26:04",
+            "updated_at": "2026-09-29 17:26:04"
         },
         {
             "id": 6,
-            "title": "SEO Optimization",
-            "description": "Helping search engines index and rank your pages higher, bringing more visibility and organic traffic to your platform.",
-            "icon": "bi bi-chat-square-text",
-            "created_at": "2026-06-12 16:59:29",
-            "updated_at": "2026-06-12 16:59:29"
+            "title": "Database Design & Optimization",
+            "description": "Designing normalized relational schemas (MySQL, PostgreSQL), advanced query optimization, indexing strategies, and caching for peak performance.",
+            "icon": "bi bi-diagram-3",
+            "created_at": "2026-09-29 17:26:05",
+            "updated_at": "2026-09-29 17:26:05"
         }
     ],
     "stats": [
         {
             "id": 1,
-            "label": "Happy Clients",
-            "count": 84,
-            "created_at": "2026-06-12 16:59:29",
-            "updated_at": "2026-06-12 16:59:29"
+            "label": "Projects Delivered",
+            "count": 14,
+            "created_at": "2026-09-29 17:26:05",
+            "updated_at": "2026-09-29 17:26:05"
         },
         {
             "id": 2,
-            "label": "Projects Completed",
-            "count": 152,
-            "created_at": "2026-06-12 16:59:30",
-            "updated_at": "2026-06-12 16:59:30"
+            "label": "SaaS & ERP Platforms",
+            "count": 5,
+            "created_at": "2026-09-29 17:26:06",
+            "updated_at": "2026-09-29 17:26:06"
         },
         {
             "id": 3,
-            "label": "Hours of Support",
-            "count": 2450,
-            "created_at": "2026-06-12 16:59:30",
-            "updated_at": "2026-06-12 16:59:30"
+            "label": "GitHub Repositories",
+            "count": 25,
+            "created_at": "2026-09-29 17:26:06",
+            "updated_at": "2026-09-29 17:26:06"
         },
         {
             "id": 4,
-            "label": "Certificates",
-            "count": 12,
-            "created_at": "2026-06-12 16:59:30",
-            "updated_at": "2026-06-12 16:59:30"
+            "label": "Months of Experience",
+            "count": 36,
+            "created_at": "2026-09-29 17:26:07",
+            "updated_at": "2026-09-29 17:26:07"
         }
     ],
     "projects": [
         {
             "id": 1,
-            "title": "App 1",
-            "category": "app",
-            "description": "A dynamic app with unique features built using Laravel API and Vue.js.",
-            "image": "assets\/img\/portfolio\/app-1.jpg",
-            "details_link": "portfolio-details.html",
-            "created_at": "2026-06-12 16:59:30",
-            "updated_at": "2026-06-12 16:59:30"
+            "title": "Melton Cloud Multi-Tenant SaaS Platform",
+            "category": "saas",
+            "description": "Architected a multi-tenant cloud SaaS platform with automated merchant onboarding, dynamic subdomain routing, tiered subscriptions, feature quotas, and billing gateways. Built a centralized SuperAdmin platform for tenant verification and approvals, cross-domain one-time-token support impersonation, audit logging, and tenant database\/storage isolation.",
+            "image": "assets\/img\/portfolio\/restaurant.png",
+            "details_link": "https:\/\/saas.meltoneg.com",
+            "created_at": "2026-09-29 17:26:08",
+            "updated_at": "2026-09-29 17:26:08"
         },
         {
             "id": 2,
-            "title": "Product 1",
-            "category": "product",
-            "description": "High quality commercial e-commerce solution product packaging layout.",
-            "image": "assets\/img\/portfolio\/product-1.jpg",
-            "details_link": "portfolio-details.html",
-            "created_at": "2026-06-12 16:59:31",
-            "updated_at": "2026-06-12 16:59:31"
+            "title": "Melton Supermarket & Retail ERP",
+            "category": "erp",
+            "description": "Engineered a full-featured retail and supermarket ERP with a high-speed POS terminal, weighted-scale barcode checkout, hold\/recall cart management, cashier shifts, cash reconciliation, and direct thermal printing. Implemented multi-branch inventory, double-entry general ledger, fixed-asset depreciation, cost centers, cheque and vault transfers, Shopify\/Bosta webhooks, and automated end-of-day WhatsApp financial reports.",
+            "image": "assets\/img\/portfolio\/servello.png",
+            "details_link": "https:\/\/meltoneg.com",
+            "created_at": "2026-09-29 17:26:08",
+            "updated_at": "2026-09-29 17:26:08"
         },
         {
             "id": 3,
-            "title": "Branding 1",
-            "category": "branding",
-            "description": "Identity design and branding package created for modern startup agencies.",
-            "image": "assets\/img\/portfolio\/branding-1.jpg",
-            "details_link": "portfolio-details.html",
-            "created_at": "2026-06-12 16:59:31",
-            "updated_at": "2026-06-12 16:59:31"
+            "title": "The Vision Network MLM & Affiliate Platform",
+            "category": "web",
+            "description": "Architected and developed a multi-tier network marketing (MLM) and affiliate commissions platform featuring binary\/level tree genealogy, plan subscriptions, and automated BV\/points rewards distribution. Engineered dynamic commission engines with automated placement algorithms, double-entry wallet ledgers, fraud-resilient point transfers, multi-gateway deposits (Stripe, PayPal, Crypto), automated withdrawals, localized Arabic\/English responsive portals, and idempotent transaction locking.",
+            "image": "assets\/img\/portfolio\/blog.png",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:09",
+            "updated_at": "2026-09-29 17:26:09"
         },
         {
             "id": 4,
-            "title": "Books 1",
-            "category": "books",
-            "description": "Elegant book cover illustration and digital layout formatting.",
-            "image": "assets\/img\/portfolio\/books-1.jpg",
-            "details_link": "portfolio-details.html",
-            "created_at": "2026-06-12 16:59:31",
-            "updated_at": "2026-06-12 16:59:31"
+            "title": "Aqar Online Real Estate Platform",
+            "category": "web",
+            "description": "Built a bilingual property marketplace and role-based dashboards for buyers, owners, brokers, companies, and admins. Integrated Sanctum, Paymob, maps, signed media, inquiries, messaging, notifications, and responsive RTL interfaces.",
+            "image": "assets\/img\/portfolio\/grand-travel.png",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:09",
+            "updated_at": "2026-09-29 17:26:09"
         },
         {
             "id": 5,
-            "title": "App 2",
-            "category": "app",
-            "description": "A web dashboard focusing on real-time data visual charts and analytics.",
-            "image": "assets\/img\/portfolio\/app-2.jpg",
-            "details_link": "portfolio-details.html",
-            "created_at": "2026-06-12 16:59:31",
-            "updated_at": "2026-06-12 16:59:31"
+            "title": "Barka ERP & REST API",
+            "category": "erp",
+            "description": "Delivered sales, purchasing, inventory, treasury, expenses, settlements, cheque tracking, and financial reporting modules. Secured APIs with token authentication, granular RBAC, idempotency, audit logs, notifications, and QR invoices.",
+            "image": "assets\/img\/portfolio\/servello.png",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:10",
+            "updated_at": "2026-09-29 17:26:10"
         },
         {
             "id": 6,
-            "title": "Product 2",
-            "category": "product",
-            "description": "Sleek product landing page showing dynamic features and specs.",
-            "image": "assets\/img\/portfolio\/product-2.jpg",
-            "details_link": "portfolio-details.html",
-            "created_at": "2026-06-12 16:59:32",
-            "updated_at": "2026-06-12 16:59:32"
+            "title": "Primo Studio Streaming Platform",
+            "category": "api",
+            "description": "Built Laravel\/Vue admin and reseller dashboards for managing movies, series, live matches, and other video content. Developed mobile APIs for browsing, search, filtering, playback, secure CRUD, and media metadata.",
+            "image": "assets\/img\/portfolio\/glovy.jpg",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:10",
+            "updated_at": "2026-09-29 17:26:10"
+        },
+        {
+            "id": 7,
+            "title": "Elmenus SaaS Platform",
+            "category": "saas",
+            "description": "Built a restaurant management SaaS using database-per-tenant architecture with automated provisioning, migrations, and subdomain setup. Implemented hierarchical RBAC and order, menu, reservation, inventory, and low-stock modules.",
+            "image": "assets\/img\/portfolio\/restaurant.png",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:11",
+            "updated_at": "2026-09-29 17:26:11"
+        },
+        {
+            "id": 8,
+            "title": "Mashi Real Estate Platform",
+            "category": "web",
+            "description": "Delivered web and Android property experiences with listings, search, bookings, favorites, and Arabic\/English support. Built shared APIs with Sanctum, OTP, RBAC, FCM, maintenance requests, uploads, ratings, and caching.",
+            "image": "assets\/img\/portfolio\/grand-travel.png",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:11",
+            "updated_at": "2026-09-29 17:26:11"
+        },
+        {
+            "id": 9,
+            "title": "Elwazer Tours Platform",
+            "category": "web",
+            "description": "Built a tourism and property management SPA with role-based dashboards and automated booking workflows. Added WhatsApp reminders, OTP verification, caching, 25+ automated tests, and GitHub Actions checks.",
+            "image": "assets\/img\/portfolio\/elwazer.png",
+            "details_link": "#",
+            "created_at": "2026-09-29 17:26:12",
+            "updated_at": "2026-09-29 17:26:12"
+        },
+        {
+            "id": 10,
+            "title": "Serv5 Company Website",
+            "category": "web",
+            "description": "Designed & developed scalable RESTful APIs (v1) with Laravel Sanctum authentication. Built a feature-rich admin panel via Filament PHP with a custom Page Builder for dynamic page creation, and engineered a dynamic services and pricing plan engine.",
+            "image": "assets\/img\/portfolio\/serv5.png",
+            "details_link": "https:\/\/serv5.com.eg\/",
+            "created_at": "2026-09-29 17:26:12",
+            "updated_at": "2026-09-29 17:26:12"
+        },
+        {
+            "id": 11,
+            "title": "Grand Travel — Luxury Travel Platform",
+            "category": "web",
+            "description": "Luxury travel platform featuring an admin dashboard for managing tour packages, destinations, and bookings across 10+ countries. Implemented MySQL relational structure supporting multi-currency (USD, EUR, JPY) and backend logic for specialized tours.",
+            "image": "assets\/img\/portfolio\/grand-travel.png",
+            "details_link": "https:\/\/grandtravel1.com\/",
+            "created_at": "2026-09-29 17:26:13",
+            "updated_at": "2026-09-29 17:26:13"
+        },
+        {
+            "id": 12,
+            "title": "Glovy — Parkinson's Aid Platform",
+            "category": "api",
+            "description": "A platform helping Parkinson's patients, integrating a mobile app, ML-based disease diagnosis models, and real-time Firebase sensor readings via a Laravel REST backend.",
+            "image": "assets\/img\/portfolio\/glovy.jpg",
+            "details_link": "https:\/\/github.com\/m7mdreda74\/Glovy-API",
+            "created_at": "2026-09-29 17:26:13",
+            "updated_at": "2026-09-29 17:26:13"
+        },
+        {
+            "id": 13,
+            "title": "Blog Platform",
+            "category": "web",
+            "description": "A Laravel MVC platform for publishing articles and comments. Includes user authentication, CRUD operations for posts, and interactive comment features.",
+            "image": "assets\/img\/portfolio\/blog.png",
+            "details_link": "https:\/\/github.com\/m7mdreda74\/Blog",
+            "created_at": "2026-09-29 17:26:14",
+            "updated_at": "2026-09-29 17:26:14"
+        },
+        {
+            "id": 14,
+            "title": "Mobile-Shopee E-Commerce",
+            "category": "web",
+            "description": "A PHP\/HTML\/CSS\/JS e-commerce website for a mobile shop, including product catalog, cart management, and CRUD operations for products and categories.",
+            "image": "assets\/img\/portfolio\/mobile-shopee.png",
+            "details_link": "https:\/\/github.com\/m7mdreda74\/E-CommerceMobileShopee",
+            "created_at": "2026-09-29 17:26:14",
+            "updated_at": "2026-09-29 17:26:14"
         }
     ],
     "resume_items": [
         {
             "id": 1,
             "type": "education",
-            "title": "Bachelor of Computer Science",
-            "organization": "Cairo University",
-            "duration": "2016 - 2020",
-            "description": "Graduated with honors. Specialization in Software Engineering and Database Design.",
-            "created_at": "2026-06-12 16:59:32",
-            "updated_at": "2026-06-12 16:59:32"
+            "title": "Bachelor of Computer and Information Sciences — Information Systems Department",
+            "organization": "Mansoura University, Egypt",
+            "duration": "2020 – 2024",
+            "description": "Studied core computer science fundamentals with specialization in Information Systems, database design, software engineering, and system analysis.",
+            "created_at": "2026-09-29 17:26:15",
+            "updated_at": "2026-09-29 17:26:15"
         },
         {
             "id": 2,
             "type": "education",
-            "title": "Full Stack Web Development Diploma",
-            "organization": "Information Technology Institute (ITI)",
-            "duration": "2020 - 2021",
-            "description": "Intensive training program focusing on Laravel, Vue.js, clean code practices, and DevOps.",
-            "created_at": "2026-06-12 16:59:32",
-            "updated_at": "2026-06-12 16:59:32"
+            "title": "Fullstack Training Program",
+            "organization": "ITI (Information Technology Institute) — Mansoura",
+            "duration": "Aug 2024 – Sep 2024",
+            "description": "Intensive fullstack training covering Vue.js, Laravel, MySQL, clean architecture, and modern web development workflows.",
+            "created_at": "2026-09-29 17:26:15",
+            "updated_at": "2026-09-29 17:26:15"
         },
         {
             "id": 3,
-            "type": "experience",
-            "title": "Senior Full Stack Developer",
-            "organization": "TechSolutions Agency",
-            "duration": "2023 - Present",
-            "description": "Lead development teams, design microservices architectures, and build modern responsive web solutions using Laravel and Vue.",
-            "created_at": "2026-06-12 16:59:32",
-            "updated_at": "2026-06-12 16:59:32"
+            "type": "education",
+            "title": "Backend Training Program",
+            "organization": "NTI (National Telecommunications Institute) — Mansoura",
+            "duration": "May 2024 – Aug 2024",
+            "description": "Focused training in PHP, SQL, and Laravel backend development including REST API design, security, and database management.",
+            "created_at": "2026-09-29 17:26:16",
+            "updated_at": "2026-09-29 17:26:16"
         },
         {
             "id": 4,
             "type": "experience",
-            "title": "Full Stack Web Developer",
-            "organization": "Creative Web Studio",
-            "duration": "2021 - 2023",
-            "description": "Built custom PHP and Laravel backend API engines and connected them with interactive Vue\/React frontends.",
-            "created_at": "2026-06-12 16:59:32",
-            "updated_at": "2026-06-12 16:59:32"
+            "title": "Full-Stack Developer",
+            "organization": "Serv5 — Mansoura, Egypt",
+            "duration": "Mar 2025 – Present",
+            "description": "Develop and maintain Laravel applications, REST APIs, database workflows, and administrative dashboards for business and SaaS products. Implement authentication, RBAC, validation, caching, reporting, automated tests, and third-party integrations. Contribute to full-stack products using Vue.js, Inertia.js, Next.js, Filament, and GitHub Actions.",
+            "created_at": "2026-09-29 17:26:16",
+            "updated_at": "2026-09-29 17:26:16"
+        },
+        {
+            "id": 5,
+            "type": "experience",
+            "title": "Backend Developer",
+            "organization": "Grand Travel — Remote",
+            "duration": "Jun 2024 – Sep 2024",
+            "description": "Built Laravel modules for tour packages, destinations, bookings, offers, and dynamic website content. Designed MySQL schemas and a CMS for managing tours, blog posts, FAQs, promotions, and multi-currency listings.",
+            "created_at": "2026-09-29 17:26:17",
+            "updated_at": "2026-09-29 17:26:17"
+        },
+        {
+            "id": 6,
+            "type": "experience",
+            "title": "Back-End Member",
+            "organization": "CIS Team MU — Mansoura University",
+            "duration": "Nov 2022 – Dec 2023",
+            "description": "Contributed as a backend developer in a student-activity technology team, collaborating on web projects and strengthening PHP\/Laravel skills in a team environment.",
+            "created_at": "2026-09-29 17:26:17",
+            "updated_at": "2026-09-29 17:26:17"
         }
     ],
     "testimonials": [
@@ -249,8 +399,8 @@
             "quote": "Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et.",
             "stars": 5,
             "image": "assets\/img\/testimonials\/testimonials-1.jpg",
-            "created_at": "2026-06-12 16:59:32",
-            "updated_at": "2026-06-12 16:59:32"
+            "created_at": "2026-09-29 17:26:18",
+            "updated_at": "2026-09-29 17:26:18"
         },
         {
             "id": 2,
@@ -259,8 +409,8 @@
             "quote": "Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster.",
             "stars": 5,
             "image": "assets\/img\/testimonials\/testimonials-2.jpg",
-            "created_at": "2026-06-12 16:59:33",
-            "updated_at": "2026-06-12 16:59:33"
+            "created_at": "2026-09-29 17:26:18",
+            "updated_at": "2026-09-29 17:26:18"
         },
         {
             "id": 3,
@@ -269,19 +419,8 @@
             "quote": "Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute.",
             "stars": 5,
             "image": "assets\/img\/testimonials\/testimonials-3.jpg",
-            "created_at": "2026-06-12 16:59:33",
-            "updated_at": "2026-06-12 16:59:33"
-        }
-    ],
-    "contact_messages": [
-        {
-            "id": 1,
-            "name": "Test User",
-            "email": "test@example.com",
-            "subject": "Hello Keshk",
-            "message": "This is a test message from automated test verification.",
-            "created_at": "2026-06-12 17:08:06",
-            "updated_at": "2026-06-12 17:08:06"
+            "created_at": "2026-09-29 17:26:19",
+            "updated_at": "2026-09-29 17:26:19"
         }
     ]
 }

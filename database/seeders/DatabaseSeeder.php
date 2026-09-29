@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
         // 1. Personal Info
         PersonalInfo::create([
             'name'          => 'Mohamed Reda Keshk',
-            'profile'       => 'Backend Developer',
+            'profile'       => 'Full-Stack Developer',
             'email'         => 'm7mdreda74@gmail.com',
             'phone'         => '+201099670724',
-            'bio'           => "I am a motivated backend developer with hands-on experience in creating web applications and APIs using Laravel and PHP. I have successfully completed several training programs, enhancing my skills in database management, RESTful services, and teamwork. Eager to contribute to innovative backend systems, I continuously seek opportunities to improve my technical expertise and apply best practices in software development.",
+            'bio'           => "Full-Stack Developer experienced in building web applications with Vue.js on the frontend and Laravel on the backend. Delivered SaaS, ERP, e-commerce, real-estate, and content platforms, connecting responsive interfaces to secure REST APIs and relational databases. Comfortable with multi-tenant architecture, role-based access control, real-time features, testing, and production workflows.",
             'profile_image' => 'assets/img/profile-img.png',
             'hero_image'    => 'assets/img/hero-img.png',
             'resume_link'   => 'https://drive.google.com/file/d/1tUSqTA0OpZpJMyQ2YsC132RfSmYnycxh/view?usp=sharing',
@@ -46,64 +46,129 @@ class DatabaseSeeder extends Seeder
             'copyright'     => '© 2026 Mohamed Reda Keshk. All Rights Reserved.',
         ]);
 
-        // 2. Skills — from CV Technical Skills section
-        Skill::create(['name' => 'PHP',          'percentage' => 90]);
-        Skill::create(['name' => 'Laravel',      'percentage' => 90]);
-        Skill::create(['name' => 'MySQL / SQL',  'percentage' => 85]);
-        Skill::create(['name' => 'RESTful APIs', 'percentage' => 90]);
-        Skill::create(['name' => 'JavaScript',   'percentage' => 75]);
-        Skill::create(['name' => 'Git & GitHub', 'percentage' => 85]);
-        Skill::create(['name' => 'Composer',     'percentage' => 80]);
-        Skill::create(['name' => 'C#',           'percentage' => 70]);
-        Skill::create(['name' => 'Python',       'percentage' => 65]);
-        Skill::create(['name' => 'ASP',          'percentage' => 65]);
-        Skill::create(['name' => 'OOP',          'percentage' => 90]);
+        // 2. Skills — from updated CV
+        Skill::create(['name' => 'Laravel & PHP',            'percentage' => 95]);
+        Skill::create(['name' => 'Vue.js 3 & Inertia.js',    'percentage' => 95]);
+        Skill::create(['name' => 'RESTful APIs & Sanctum',   'percentage' => 95]);
+        Skill::create(['name' => 'MySQL & Relational DB',    'percentage' => 90]);
+        Skill::create(['name' => 'Multi-Tenant Architecture','percentage' => 90]);
+        Skill::create(['name' => 'Filament PHP & RBAC',      'percentage' => 90]);
+        Skill::create(['name' => 'JavaScript & TypeScript',  'percentage' => 90]);
+        Skill::create(['name' => 'Tailwind CSS & Next.js',   'percentage' => 85]);
+        Skill::create(['name' => 'Git & GitHub Actions',     'percentage' => 90]);
+        Skill::create(['name' => 'WebSockets & Real-Time',   'percentage' => 85]);
+        Skill::create(['name' => 'PostgreSQL & Optimization','percentage' => 85]);
+        Skill::create(['name' => 'Testing & PHPUnit',        'percentage' => 85]);
 
         // 3. Services — derived from proven project work in CV
         Service::create([
-            'title'       => 'Website Development',
-            'description' => 'Building responsive, modern websites and web applications, including e-commerce platforms, dynamic portals, and custom web systems using PHP and Laravel.',
+            'title'       => 'Full-Stack Web Development',
+            'description' => 'Building modern, high-performance web applications with responsive Vue.js 3 / Inertia.js interfaces connected to robust Laravel backends.',
             'icon'        => 'bi bi-globe',
         ]);
         Service::create([
-            'title'       => 'RESTful API Development',
-            'description' => 'Designing and building structured, secure RESTful APIs with Laravel Sanctum authentication, versioning, and clean endpoint architecture for web and mobile integrations.',
-            'icon'        => 'bi bi-code-slash',
-        ]);
-        Service::create([
-            'title'       => 'Custom Admin Dashboards',
-            'description' => 'Building feature-rich admin panels and business control panels with dynamic resource managers, interactive reporting, and fully controlled content workflows.',
-            'icon'        => 'bi bi-layout-text-sidebar-reverse',
-        ]);
-        Service::create([
-            'title'       => 'SaaS & Multi-Tenant Systems',
-            'description' => 'Engineering multi-database SaaS platforms with automated tenant onboarding, isolated environments, subdomain routing, and centralized super-admin portals.',
+            'title'       => 'Multi-Tenant SaaS Platforms',
+            'description' => 'Architecting scalable cloud SaaS platforms with database-per-tenant isolation, automated onboarding, subdomain routing, and billing gateways.',
             'icon'        => 'bi bi-server',
         ]);
         Service::create([
-            'title'       => 'Role-Based Access Control',
-            'description' => 'Implementing fine-grained RBAC systems using Spatie Permissions to secure sensitive operations and APIs across complex admin hierarchies.',
-            'icon'        => 'bi bi-shield-lock',
+            'title'       => 'Retail & Supermarket ERP Systems',
+            'description' => 'Engineering comprehensive ERP solutions with high-speed POS terminals, barcode scanning, cashier shifts, double-entry accounting, and WhatsApp reports.',
+            'icon'        => 'bi bi-shop',
+        ]);
+        Service::create([
+            'title'       => 'RESTful API & Integration',
+            'description' => 'Designing secure, versioned RESTful APIs with Laravel Sanctum, idempotent transactions, payment gateways, and third-party webhook integrations.',
+            'icon'        => 'bi bi-code-slash',
+        ]);
+        Service::create([
+            'title'       => 'Admin Dashboards & RBAC CMS',
+            'description' => 'Building rich administrative portals with Filament PHP, dynamic page builders, Spatie RBAC permission matrices, and interactive business analytics.',
+            'icon'        => 'bi bi-layout-text-sidebar-reverse',
         ]);
         Service::create([
             'title'       => 'Database Design & Optimization',
-            'description' => 'Designing efficient relational database schemas, writing optimized queries, and implementing caching strategies for high-performance applications.',
+            'description' => 'Designing normalized relational schemas (MySQL, PostgreSQL), advanced query optimization, indexing strategies, and caching for peak performance.',
             'icon'        => 'bi bi-diagram-3',
         ]);
 
         // 4. Stats
-        Stat::create(['label' => 'Projects Completed', 'count' => 7]);
-        Stat::create(['label' => 'Training Programs',  'count' => 4]);
-        Stat::create(['label' => 'GitHub Repositories', 'count' => 20]);
-        Stat::create(['label' => 'Months Experience',  'count' => 36]);
+        Stat::create(['label' => 'Projects Delivered',   'count' => 14]);
+        Stat::create(['label' => 'SaaS & ERP Platforms', 'count' => 5]);
+        Stat::create(['label' => 'GitHub Repositories',  'count' => 25]);
+        Stat::create(['label' => 'Months of Experience', 'count' => 36]);
 
-        // 5. Projects — real projects from CV
+        // 5. Projects — All 14 projects from the updated CV
         Project::create([
-            'title'        => 'Servello — Projects Management',
-            'category'     => 'web',
-            'description'  => 'Developed a Real-Time Project Management & Kanban Platform using Laravel, Vue 3, Inertia.js, and TypeScript. Features dynamic task transitions, dependency tracking, a Smart Time-Tracking System, Direct & Group Chats with Laravel Echo and WebSockets, developer accountability/health score (HP) dashboards, and WhatsApp API notifications.',
+            'title'        => 'Melton Cloud Multi-Tenant SaaS Platform',
+            'category'     => 'saas',
+            'description'  => 'Architected a multi-tenant cloud SaaS platform with automated merchant onboarding, dynamic subdomain routing, tiered subscriptions, feature quotas, and billing gateways. Built a centralized SuperAdmin platform for tenant verification and approvals, cross-domain one-time-token support impersonation, audit logging, and tenant database/storage isolation.',
+            'image'        => 'assets/img/portfolio/restaurant.png',
+            'details_link' => 'https://saas.meltoneg.com',
+        ]);
+
+        Project::create([
+            'title'        => 'Melton Supermarket & Retail ERP',
+            'category'     => 'erp',
+            'description'  => 'Engineered a full-featured retail and supermarket ERP with a high-speed POS terminal, weighted-scale barcode checkout, hold/recall cart management, cashier shifts, cash reconciliation, and direct thermal printing. Implemented multi-branch inventory, double-entry general ledger, fixed-asset depreciation, cost centers, cheque and vault transfers, Shopify/Bosta webhooks, and automated end-of-day WhatsApp financial reports.',
             'image'        => 'assets/img/portfolio/servello.png',
-            'details_link' => 'https://servello.iptvdemo.serv5group.com/',
+            'details_link' => 'https://meltoneg.com',
+        ]);
+
+        Project::create([
+            'title'        => 'The Vision Network MLM & Affiliate Platform',
+            'category'     => 'web',
+            'description'  => 'Architected and developed a multi-tier network marketing (MLM) and affiliate commissions platform featuring binary/level tree genealogy, plan subscriptions, and automated BV/points rewards distribution. Engineered dynamic commission engines with automated placement algorithms, double-entry wallet ledgers, fraud-resilient point transfers, multi-gateway deposits (Stripe, PayPal, Crypto), automated withdrawals, localized Arabic/English responsive portals, and idempotent transaction locking.',
+            'image'        => 'assets/img/portfolio/blog.png',
+            'details_link' => '#',
+        ]);
+
+        Project::create([
+            'title'        => 'Aqar Online Real Estate Platform',
+            'category'     => 'web',
+            'description'  => 'Built a bilingual property marketplace and role-based dashboards for buyers, owners, brokers, companies, and admins. Integrated Sanctum, Paymob, maps, signed media, inquiries, messaging, notifications, and responsive RTL interfaces.',
+            'image'        => 'assets/img/portfolio/grand-travel.png',
+            'details_link' => '#',
+        ]);
+
+        Project::create([
+            'title'        => 'Barka ERP & REST API',
+            'category'     => 'erp',
+            'description'  => 'Delivered sales, purchasing, inventory, treasury, expenses, settlements, cheque tracking, and financial reporting modules. Secured APIs with token authentication, granular RBAC, idempotency, audit logs, notifications, and QR invoices.',
+            'image'        => 'assets/img/portfolio/servello.png',
+            'details_link' => '#',
+        ]);
+
+        Project::create([
+            'title'        => 'Primo Studio Streaming Platform',
+            'category'     => 'api',
+            'description'  => 'Built Laravel/Vue admin and reseller dashboards for managing movies, series, live matches, and other video content. Developed mobile APIs for browsing, search, filtering, playback, secure CRUD, and media metadata.',
+            'image'        => 'assets/img/portfolio/glovy.jpg',
+            'details_link' => '#',
+        ]);
+
+        Project::create([
+            'title'        => 'Elmenus SaaS Platform',
+            'category'     => 'saas',
+            'description'  => 'Built a restaurant management SaaS using database-per-tenant architecture with automated provisioning, migrations, and subdomain setup. Implemented hierarchical RBAC and order, menu, reservation, inventory, and low-stock modules.',
+            'image'        => 'assets/img/portfolio/restaurant.png',
+            'details_link' => '#',
+        ]);
+
+        Project::create([
+            'title'        => 'Mashi Real Estate Platform',
+            'category'     => 'web',
+            'description'  => 'Delivered web and Android property experiences with listings, search, bookings, favorites, and Arabic/English support. Built shared APIs with Sanctum, OTP, RBAC, FCM, maintenance requests, uploads, ratings, and caching.',
+            'image'        => 'assets/img/portfolio/grand-travel.png',
+            'details_link' => '#',
+        ]);
+
+        Project::create([
+            'title'        => 'Elwazer Tours Platform',
+            'category'     => 'web',
+            'description'  => 'Built a tourism and property management SPA with role-based dashboards and automated booking workflows. Added WhatsApp reminders, OTP verification, caching, 25+ automated tests, and GitHub Actions checks.',
+            'image'        => 'assets/img/portfolio/elwazer.png',
+            'details_link' => '#',
         ]);
 
         Project::create([
@@ -112,14 +177,6 @@ class DatabaseSeeder extends Seeder
             'description'  => 'Designed & developed scalable RESTful APIs (v1) with Laravel Sanctum authentication. Built a feature-rich admin panel via Filament PHP with a custom Page Builder for dynamic page creation, and engineered a dynamic services and pricing plan engine.',
             'image'        => 'assets/img/portfolio/serv5.png',
             'details_link' => 'https://serv5.com.eg/',
-        ]);
-
-        Project::create([
-            'title'        => 'MyRestaurant SaaS Platform',
-            'category'     => 'saas',
-            'description'  => 'A high-performance Multi-Tenant SaaS platform with database-per-tenant isolation using Laravel Tenancy. Features automated tenant onboarding (subdomains + migrations), tri-level RBAC (Super Admin, Tenant Admin, Staff), dynamic middleware routing, order processing, digital menu management, and inventory tracking.',
-            'image'        => 'assets/img/portfolio/restaurant.png',
-            'details_link' => '#',
         ]);
 
         Project::create([
@@ -158,47 +215,40 @@ class DatabaseSeeder extends Seeder
         // --- Education ---
         ResumeItem::create([
             'type'         => 'education',
-            'title'        => 'Bachelor of Computer & Information Sciences — Department of Information Systems',
-            'organization' => 'Mansoura University',
+            'title'        => 'Bachelor of Computer and Information Sciences — Information Systems Department',
+            'organization' => 'Mansoura University, Egypt',
             'duration'     => '2020 – 2024',
-            'description'  => 'Studied core computer science fundamentals with a specialization in Information Systems, covering database design, software engineering, networking, and programming paradigms.',
+            'description'  => 'Studied core computer science fundamentals with specialization in Information Systems, database design, software engineering, and system analysis.',
         ]);
         ResumeItem::create([
             'type'         => 'education',
             'title'        => 'Fullstack Training Program',
             'organization' => 'ITI (Information Technology Institute) — Mansoura',
             'duration'     => 'Aug 2024 – Sep 2024',
-            'description'  => 'Intensive fullstack training covering HTML, CSS, JavaScript, MySQL, PHP, and Laravel, with hands-on project work.',
+            'description'  => 'Intensive fullstack training covering Vue.js, Laravel, MySQL, clean architecture, and modern web development workflows.',
         ]);
         ResumeItem::create([
             'type'         => 'education',
             'title'        => 'Backend Training Program',
             'organization' => 'NTI (National Telecommunications Institute) — Mansoura',
             'duration'     => 'May 2024 – Aug 2024',
-            'description'  => 'Focused training in PHP, SQL, and Laravel backend development including REST API design and database management.',
-        ]);
-        ResumeItem::create([
-            'type'         => 'education',
-            'title'        => 'Back-End Development Course',
-            'organization' => 'CCIC — Mansoura University',
-            'duration'     => 'Jul 2023 – Oct 2023',
-            'description'  => 'Training course covering Dynamic Language (PHP), MySQL, and the Laravel framework with practical project application.',
+            'description'  => 'Focused training in PHP, SQL, and Laravel backend development including REST API design, security, and database management.',
         ]);
 
         // --- Experience ---
         ResumeItem::create([
             'type'         => 'experience',
-            'title'        => 'Backend Developer',
-            'organization' => 'Serv5',
-            'duration'     => 'Apr 2025 – Present',
-            'description'  => 'Building and maintaining scalable RESTful APIs, a Filament-powered admin dashboard with a custom Page Builder, dynamic pricing and quotation engines, an ATS careers portal, RBAC with Spatie, and cache-invalidation strategies for improved performance.',
+            'title'        => 'Full-Stack Developer',
+            'organization' => 'Serv5 — Mansoura, Egypt',
+            'duration'     => 'Mar 2025 – Present',
+            'description'  => 'Develop and maintain Laravel applications, REST APIs, database workflows, and administrative dashboards for business and SaaS products. Implement authentication, RBAC, validation, caching, reporting, automated tests, and third-party integrations. Contribute to full-stack products using Vue.js, Inertia.js, Next.js, Filament, and GitHub Actions.',
         ]);
         ResumeItem::create([
             'type'         => 'experience',
             'title'        => 'Backend Developer',
-            'organization' => 'Grand Travel',
+            'organization' => 'Grand Travel — Remote',
             'duration'     => 'Jun 2024 – Sep 2024',
-            'description'  => 'Developed the core backend with PHP & Laravel to manage tour packages, bookings, and multi-region business flows, designed the MySQL database structure for multi-currency handling, and implemented a Filament-based CMS with dynamic filters for specialized tours.',
+            'description'  => 'Built Laravel modules for tour packages, destinations, bookings, offers, and dynamic website content. Designed MySQL schemas and a CMS for managing tours, blog posts, FAQs, promotions, and multi-currency listings.',
         ]);
         ResumeItem::create([
             'type'         => 'experience',
@@ -232,4 +282,3 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
-

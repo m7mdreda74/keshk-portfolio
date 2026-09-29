@@ -116,6 +116,10 @@ export default {
 
     const capitalize = (str) => {
       if (!str) return '';
+      const lower = str.toLowerCase();
+      if (lower === 'saas') return 'SaaS';
+      if (lower === 'erp') return 'ERP';
+      if (lower === 'api') return 'API';
       return str.charAt(0).toUpperCase() + str.slice(1);
     };
 

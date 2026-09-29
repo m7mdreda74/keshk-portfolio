@@ -3,7 +3,7 @@
     <!-- Preloader -->
     <div v-if="loading" id="preloader"></div>
 
-    <div v-else>
+    <div v-else-if="portfolioData">
       <HeaderComponent :personalInfo="portfolioData.personal_info" />
 
       <main class="main">
@@ -83,7 +83,7 @@ export default {
       try {
         // 1. Show cached data immediately (makes repeat visits instant)
         const CACHE_KEY = 'keshk-portfolio-data';
-        const CACHE_VERSION = 'v2'; // bump this whenever new DB fields are added
+        const CACHE_VERSION = 'v3'; // bump this whenever new DB fields or projects are added
         const cachedVersion = localStorage.getItem('keshk-portfolio-version');
 
         if (cachedVersion !== CACHE_VERSION) {

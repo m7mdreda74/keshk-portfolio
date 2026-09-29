@@ -37,13 +37,13 @@
         <span class="hero-role-prefix">A </span>
         <span
           class="typed hero-typed"
-          data-typed-items="Backend Developer,Laravel and PHP Expert,RESTful API Builder,SaaS Architect,Problem Solver"
+          data-typed-items="Full-Stack Developer,Laravel & Vue.js Expert,SaaS & ERP Architect,RESTful API Builder,Problem Solver"
         ></span>
       </p>
 
       <!-- Short tagline -->
       <p class="hero-tagline" data-aos="fade-up" data-aos-delay="300">
-        Building robust systems · Clean APIs · Scalable architectures
+        Building robust full-stack applications · Scalable SaaS & ERP · Clean APIs
       </p>
 
       <!-- CTA buttons -->
