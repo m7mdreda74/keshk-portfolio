@@ -157,7 +157,7 @@ class DatabaseSeeder extends Seeder
 
         Project::create([
             'title'        => 'Mashi Real Estate Platform',
-            'category'     => 'web',
+            'category'     => 'api',
             'description'  => 'Delivered web and Android property experiences with listings, search, bookings, favorites, and Arabic/English support. Built shared APIs with Sanctum, OTP, RBAC, FCM, maintenance requests, uploads, ratings, and caching.',
             'image'        => 'assets/img/portfolio/grand-travel.png',
             'details_link' => '#',

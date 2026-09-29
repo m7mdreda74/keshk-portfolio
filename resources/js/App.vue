@@ -83,7 +83,7 @@ export default {
       try {
         // 1. Show cached data immediately (makes repeat visits instant)
         const CACHE_KEY = 'keshk-portfolio-data';
-        const CACHE_VERSION = 'v3'; // bump this whenever new DB fields or projects are added
+        const CACHE_VERSION = 'v4'; // bump this whenever new DB fields or categories change
         const cachedVersion = localStorage.getItem('keshk-portfolio-version');
 
         if (cachedVersion !== CACHE_VERSION) {

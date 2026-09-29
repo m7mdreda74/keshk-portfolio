@@ -4,18 +4,28 @@
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
       <h2>Portfolio</h2>
-      <p>A showcase of my recent design and development projects.</p>
+      <p>A curated showcase of scalable SaaS platforms, enterprise ERP systems, REST APIs, and full-stack web applications.</p>
     </div><!-- End Section Title -->
 
     <div class="container">
       <div class="isotope-layout">
         <!-- Portfolio Filters -->
-        <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-          <li :class="{ 'filter-active': selectedFilter === '*' }" @click="setFilter('*')">All</li>
-          <li v-for="cat in categories" :key="cat" :class="{ 'filter-active': selectedFilter === cat }" @click="setFilter(cat)">
-            {{ capitalize(cat) }}
-          </li>
-        </ul><!-- End Portfolio Filters -->
+        <div class="portfolio-filters-wrapper" data-aos="fade-up" data-aos-delay="100">
+          <ul class="portfolio-filters isotope-filters">
+            <li :class="{ 'filter-active': selectedFilter === '*' }" @click="setFilter('*')">
+              <span class="filter-label">All</span>
+              <span class="filter-count">{{ projects.length }}</span>
+            </li>
+            <li v-for="cat in categories" 
+                :key="cat" 
+                :class="{ 'filter-active': selectedFilter === cat }" 
+                @click="setFilter(cat)">
+              <i :class="getCategoryIcon(cat)" class="filter-icon"></i>
+              <span class="filter-label">{{ capitalize(cat) }}</span>
+              <span class="filter-count">{{ getCategoryCount(cat) }}</span>
+            </li>
+          </ul>
+        </div><!-- End Portfolio Filters -->
 
         <!-- Portfolio Items -->
         <div class="row gy-5 isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -26,6 +36,12 @@
             <div class="portfolio-card-inner">
               <!-- Image Wrapper with hover overlay for Title & Links -->
               <div class="portfolio-img-wrap">
+                <!-- Floating Category Badge -->
+                <div class="portfolio-card-badge" :class="'badge-' + (project.category || '').toLowerCase()">
+                  <i :class="getCategoryIcon(project.category)" class="me-1"></i>
+                  {{ capitalize(project.category) }}
+                </div>
+
                 <img :src="project.image || '/assets/img/portfolio/serv5.jpg'" class="img-fluid" :alt="project.title">
                 
                 <!-- Overlay (Visible on Hover over Image) -->
@@ -53,7 +69,10 @@
               <div class="portfolio-desc-dropdown">
                 <div class="portfolio-desc-content">
                   <h5 class="desc-title">{{ project.title }}</h5>
-                  <span class="desc-category">{{ capitalize(project.category) }}</span>
+                  <span class="desc-category" :class="'cat-' + (project.category || '').toLowerCase()">
+                    <i :class="getCategoryIcon(project.category)" class="me-1"></i>
+                    {{ capitalize(project.category) }}
+                  </span>
                   <p class="desc-text">{{ project.description }}</p>
                   <div class="desc-footer" v-if="project.details_link && project.details_link !== '#'">
                     <a :href="project.details_link" target="_blank" rel="noopener" class="desc-btn">
@@ -86,14 +105,34 @@ export default {
     const selectedFilter = ref('*');
     let lightboxInstance = null;
 
+    // Explicit order for categories: SaaS -> ERP -> API -> Web
+    const categoryOrder = ['saas', 'erp', 'api', 'web'];
+
     const categories = computed(() => {
-      const cats = props.projects.map(p => p.category);
-      return [...new Set(cats)];
+      const cats = [...new Set(props.projects.map(p => (p.category || '').toLowerCase()))];
+      return cats.sort((a, b) => {
+        const idxA = categoryOrder.indexOf(a);
+        const idxB = categoryOrder.indexOf(b);
+        return (idxA !== -1 ? idxA : 99) - (idxB !== -1 ? idxB : 99);
+      });
     });
+
+    const getCategoryCount = (cat) => {
+      if (cat === '*') return props.projects.length;
+      return props.projects.filter(p => (p.category || '').toLowerCase() === cat.toLowerCase()).length;
+    };
+
+    const getCategoryIcon = (cat) => {
+      const c = (cat || '').toLowerCase();
+      if (c === 'saas') return 'bi bi-cloud-check-fill';
+      if (c === 'erp') return 'bi bi-cpu-fill';
+      if (c === 'api') return 'bi bi-code-slash';
+      return 'bi bi-globe';
+    };
 
     const filteredProjects = computed(() => {
       if (selectedFilter.value === '*') return props.projects;
-      return props.projects.filter(p => p.category === selectedFilter.value);
+      return props.projects.filter(p => (p.category || '').toLowerCase() === selectedFilter.value.toLowerCase());
     });
 
     const initLightbox = () => {
@@ -133,12 +172,139 @@ export default {
       filteredProjects,
       setFilter,
       capitalize,
+      getCategoryCount,
+      getCategoryIcon,
     };
   },
 };
 </script>
 
 <style scoped>
+/* Filter Pills Wrapper */
+.portfolio-filters-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.portfolio-filters {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(18, 14, 28, 0.75);
+  border: 1px solid rgba(144, 99, 255, 0.22);
+  border-radius: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  list-style: none;
+  margin: 0 !important;
+}
+
+.portfolio-filters li {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  color: #cbd5e1 !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  padding: 8px 18px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border-radius: 30px !important;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none;
+  box-shadow: none !important;
+}
+
+.portfolio-filters li:hover {
+  color: #ffffff !important;
+  background: rgba(144, 99, 255, 0.16) !important;
+  border-color: rgba(144, 99, 255, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+.portfolio-filters li.filter-active {
+  background: linear-gradient(135deg, #7c3aed 0%, #9063ff 100%) !important;
+  color: #ffffff !important;
+  border-color: rgba(192, 132, 252, 0.6) !important;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+.filter-icon {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.portfolio-filters li.filter-active .filter-count {
+  background: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+/* Floating Category Badge on Project Card */
+.portfolio-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.45);
+  transition: all 0.3s ease;
+}
+
+.portfolio-card-badge.badge-saas {
+  background: rgba(124, 58, 237, 0.35);
+  border: 1px solid rgba(192, 132, 252, 0.55);
+  color: #e9d5ff;
+}
+
+.portfolio-card-badge.badge-erp {
+  background: rgba(16, 185, 129, 0.28);
+  border: 1px solid rgba(52, 211, 153, 0.55);
+  color: #a7f3d0;
+}
+
+.portfolio-card-badge.badge-api {
+  background: rgba(245, 158, 11, 0.28);
+  border: 1px solid rgba(251, 191, 36, 0.55);
+  color: #fde68a;
+}
+
+.portfolio-card-badge.badge-web {
+  background: rgba(56, 189, 248, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.55);
+  color: #bae6fd;
+}
+
 /* Card inner container */
 .portfolio-card-inner {
   position: relative;
@@ -218,77 +384,99 @@ export default {
 .portfolio-action-links a {
   color: rgba(255, 255, 255, 0.85);
   background: rgba(144, 99, 255, 0.2);
-  border: 1px solid rgba(144, 99, 255, 0.4);
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: inline-flex;
+  border: 1px solid rgba(144, 99, 255, 0.3);
+  width: 40px;
+  height: 40px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  border-radius: 50%;
   transition: all 0.3s ease;
-  text-decoration: none;
+  font-size: 16px;
+  backdrop-filter: blur(4px);
 }
 
 .portfolio-action-links a:hover {
-  background: #9063ff;
-  border-color: #9063ff;
+  background: var(--accent-color, #9063ff);
   color: #ffffff;
-  transform: translateY(-2px);
+  border-color: var(--accent-color, #9063ff);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(144, 99, 255, 0.6);
 }
 
-/* Description Dropdown box */
+/* Description Dropdown (Hidden initially, slides down on card hover) */
 .portfolio-desc-dropdown {
   position: absolute;
-  top: calc(100% - 2px);
+  top: 100%;
   left: -1px;
   right: -1px;
-  z-index: 5;
-  background: rgba(15, 10, 25, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #110e1b;
   border: 1px solid rgba(144, 99, 255, 0.45);
   border-top: none;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  padding: 0 20px;
   max-height: 0;
   opacity: 0;
+  visibility: hidden;
   overflow: hidden;
-  transform: translateY(-6px);
-  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease,
-              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease,
+              padding 0.35s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+  z-index: 9999;
 }
 
 .portfolio-item:hover .portfolio-desc-dropdown {
-  max-height: 380px;
+  max-height: 280px;
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  padding: 18px 20px 22px 20px;
 }
 
 .portfolio-desc-content {
-  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .desc-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 5px 0;
+  color: #f8fafc;
+  margin: 0 0 4px 0;
 }
 
 .desc-category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 10px;
   font-weight: 700;
-  color: #c084fc;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 12px;
-  background: rgba(192, 132, 252, 0.12);
   padding: 2px 8px;
   border-radius: 4px;
+  width: fit-content;
+}
+
+.desc-category.cat-saas {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.15);
+}
+
+.desc-category.cat-erp {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.15);
+}
+
+.desc-category.cat-api {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.desc-category.cat-web {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
 }
 
 .desc-text {
@@ -341,7 +529,7 @@ export default {
 /* Background elements */
 .portfolio {
   position: relative;
-  overflow: visible; /* Allow absolute elements to pop out */
+  overflow: visible;
 }
 
 .portfolio-bg {
@@ -363,23 +551,21 @@ export default {
   inset: 0;
   z-index: 2;
 }
-
 </style>
 
 <style>
 /* Global overrides to prevent clipping and overlay issues in isotope grid */
 .portfolio .container {
   position: relative;
-  z-index: 10 !important; /* Force container on top of any background overlays */
+  z-index: 10 !important;
 }
 
 .portfolio .portfolio-item {
-  overflow: visible !important; /* Allow the dropdown description to slide down outside the card */
+  overflow: visible !important;
   z-index: 1;
 }
 
 .portfolio .portfolio-item:hover {
-  z-index: 9999 !important; /* Bring the hovered card to the very front so its dropdown overlays cards below it */
+  z-index: 9999 !important;
 }
 </style>
-
