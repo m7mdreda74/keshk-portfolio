@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\Stat;
 use App\Models\Project;
 use App\Models\ResumeItem;
+use App\Models\Testimonial;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         Stat::truncate();
         Project::truncate();
         ResumeItem::truncate();
+        Testimonial::truncate();
 
         // 1. Personal Info
         PersonalInfo::create([
@@ -34,6 +36,14 @@ class DatabaseSeeder extends Seeder
             'bio'           => "I am a motivated backend developer with hands-on experience in creating web applications and APIs using Laravel and PHP. I have successfully completed several training programs, enhancing my skills in database management, RESTful services, and teamwork. Eager to contribute to innovative backend systems, I continuously seek opportunities to improve my technical expertise and apply best practices in software development.",
             'profile_image' => 'assets/img/profile-img.png',
             'hero_image'    => 'assets/img/hero-img.png',
+            'resume_link'   => 'https://drive.google.com/file/d/1tUSqTA0OpZpJMyQ2YsC132RfSmYnycxh/view?usp=sharing',
+            'linkedin'      => 'https://www.linkedin.com/in/m0hamed-keshk',
+            'github'        => 'https://github.com/m7mdreda74',
+            'whatsapp'      => 'http://wa.me/201099670724',
+            'telegram'      => 'http://t.me/m7md_reda74',
+            'facebook'      => 'https://www.facebook.com/share/1JNP9vrxzq/',
+            'instagram'     => 'https://www.instagram.com/m7md_reda74',
+            'copyright'     => '© 2026 Mohamed Reda Keshk. All Rights Reserved.',
         ]);
 
         // 2. Skills — from CV Technical Skills section
@@ -197,5 +207,29 @@ class DatabaseSeeder extends Seeder
             'duration'     => 'Nov 2022 – Dec 2023',
             'description'  => 'Contributed as a backend developer in a student-activity technology team, collaborating on web projects and strengthening PHP/Laravel skills in a team environment.',
         ]);
+
+        // 7. Testimonials
+        Testimonial::create([
+            'name'  => 'Saul Goodman',
+            'role'  => 'Attorney & Founder',
+            'quote' => 'Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et.',
+            'stars' => 5,
+            'image' => 'assets/img/testimonials/testimonials-1.jpg',
+        ]);
+        Testimonial::create([
+            'name'  => 'Sara Wilsson',
+            'role'  => 'Creative Director',
+            'quote' => 'Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster.',
+            'stars' => 5,
+            'image' => 'assets/img/testimonials/testimonials-2.jpg',
+        ]);
+        Testimonial::create([
+            'name'  => 'Jena Karlis',
+            'role'  => 'E-Shop Owner',
+            'quote' => 'Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute.',
+            'stars' => 5,
+            'image' => 'assets/img/testimonials/testimonials-3.jpg',
+        ]);
     }
 }
+

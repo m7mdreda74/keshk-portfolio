@@ -1,0 +1,287 @@
+{
+    "personal_infos": [
+        {
+            "id": 1,
+            "name": "Keshk",
+            "profile": "Full Stack Web Developer",
+            "email": "keshk@example.com",
+            "phone": "+20 100 123 4567",
+            "bio": "Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla porttitor accumsan tincidunt. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+            "profile_image": "assets\/img\/profile-img.jpg",
+            "hero_image": "assets\/img\/hero-img.jpg",
+            "created_at": "2026-06-12 16:59:27",
+            "updated_at": "2026-06-12 16:59:27"
+        }
+    ],
+    "skills": [
+        {
+            "id": 1,
+            "name": "HTML",
+            "percentage": 100,
+            "created_at": "2026-06-12 16:59:27",
+            "updated_at": "2026-06-12 16:59:27"
+        },
+        {
+            "id": 2,
+            "name": "CSS",
+            "percentage": 95,
+            "created_at": "2026-06-12 16:59:27",
+            "updated_at": "2026-06-12 16:59:27"
+        },
+        {
+            "id": 3,
+            "name": "JavaScript",
+            "percentage": 90,
+            "created_at": "2026-06-12 16:59:28",
+            "updated_at": "2026-06-12 16:59:28"
+        },
+        {
+            "id": 4,
+            "name": "Laravel",
+            "percentage": 95,
+            "created_at": "2026-06-12 16:59:28",
+            "updated_at": "2026-06-12 16:59:28"
+        },
+        {
+            "id": 5,
+            "name": "Vue.js",
+            "percentage": 85,
+            "created_at": "2026-06-12 16:59:28",
+            "updated_at": "2026-06-12 16:59:28"
+        },
+        {
+            "id": 6,
+            "name": "PHP",
+            "percentage": 95,
+            "created_at": "2026-06-12 16:59:28",
+            "updated_at": "2026-06-12 16:59:28"
+        }
+    ],
+    "services": [
+        {
+            "id": 1,
+            "title": "Web Design",
+            "description": "We create visually stunning and user-friendly web designs that are fully responsive and customized to match your branding perfectly.",
+            "icon": "bi bi-activity",
+            "created_at": "2026-06-12 16:59:28",
+            "updated_at": "2026-06-12 16:59:28"
+        },
+        {
+            "id": 2,
+            "title": "Web Development",
+            "description": "Robust and scalable full stack web applications built using cutting-edge backend and frontend frameworks like Laravel and Vue.js.",
+            "icon": "bi bi-broadcast",
+            "created_at": "2026-06-12 16:59:28",
+            "updated_at": "2026-06-12 16:59:28"
+        },
+        {
+            "id": 3,
+            "title": "API Development",
+            "description": "Fast, secure, and clean RESTful API structures built to integrate with mobile applications, web apps, or third-party tools.",
+            "icon": "bi bi-easel",
+            "created_at": "2026-06-12 16:59:29",
+            "updated_at": "2026-06-12 16:59:29"
+        },
+        {
+            "id": 4,
+            "title": "E-Commerce Solutions",
+            "description": "Custom online store development with integrated shopping carts, inventory systems, and secure payment processing.",
+            "icon": "bi bi-bounding-box-circles",
+            "created_at": "2026-06-12 16:59:29",
+            "updated_at": "2026-06-12 16:59:29"
+        },
+        {
+            "id": 5,
+            "title": "Responsive Design",
+            "description": "Ensuring your website is fully operational and looks exceptional across all mobile phones, tablets, laptops, and monitors.",
+            "icon": "bi bi-calendar4-week",
+            "created_at": "2026-06-12 16:59:29",
+            "updated_at": "2026-06-12 16:59:29"
+        },
+        {
+            "id": 6,
+            "title": "SEO Optimization",
+            "description": "Helping search engines index and rank your pages higher, bringing more visibility and organic traffic to your platform.",
+            "icon": "bi bi-chat-square-text",
+            "created_at": "2026-06-12 16:59:29",
+            "updated_at": "2026-06-12 16:59:29"
+        }
+    ],
+    "stats": [
+        {
+            "id": 1,
+            "label": "Happy Clients",
+            "count": 84,
+            "created_at": "2026-06-12 16:59:29",
+            "updated_at": "2026-06-12 16:59:29"
+        },
+        {
+            "id": 2,
+            "label": "Projects Completed",
+            "count": 152,
+            "created_at": "2026-06-12 16:59:30",
+            "updated_at": "2026-06-12 16:59:30"
+        },
+        {
+            "id": 3,
+            "label": "Hours of Support",
+            "count": 2450,
+            "created_at": "2026-06-12 16:59:30",
+            "updated_at": "2026-06-12 16:59:30"
+        },
+        {
+            "id": 4,
+            "label": "Certificates",
+            "count": 12,
+            "created_at": "2026-06-12 16:59:30",
+            "updated_at": "2026-06-12 16:59:30"
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "title": "App 1",
+            "category": "app",
+            "description": "A dynamic app with unique features built using Laravel API and Vue.js.",
+            "image": "assets\/img\/portfolio\/app-1.jpg",
+            "details_link": "portfolio-details.html",
+            "created_at": "2026-06-12 16:59:30",
+            "updated_at": "2026-06-12 16:59:30"
+        },
+        {
+            "id": 2,
+            "title": "Product 1",
+            "category": "product",
+            "description": "High quality commercial e-commerce solution product packaging layout.",
+            "image": "assets\/img\/portfolio\/product-1.jpg",
+            "details_link": "portfolio-details.html",
+            "created_at": "2026-06-12 16:59:31",
+            "updated_at": "2026-06-12 16:59:31"
+        },
+        {
+            "id": 3,
+            "title": "Branding 1",
+            "category": "branding",
+            "description": "Identity design and branding package created for modern startup agencies.",
+            "image": "assets\/img\/portfolio\/branding-1.jpg",
+            "details_link": "portfolio-details.html",
+            "created_at": "2026-06-12 16:59:31",
+            "updated_at": "2026-06-12 16:59:31"
+        },
+        {
+            "id": 4,
+            "title": "Books 1",
+            "category": "books",
+            "description": "Elegant book cover illustration and digital layout formatting.",
+            "image": "assets\/img\/portfolio\/books-1.jpg",
+            "details_link": "portfolio-details.html",
+            "created_at": "2026-06-12 16:59:31",
+            "updated_at": "2026-06-12 16:59:31"
+        },
+        {
+            "id": 5,
+            "title": "App 2",
+            "category": "app",
+            "description": "A web dashboard focusing on real-time data visual charts and analytics.",
+            "image": "assets\/img\/portfolio\/app-2.jpg",
+            "details_link": "portfolio-details.html",
+            "created_at": "2026-06-12 16:59:31",
+            "updated_at": "2026-06-12 16:59:31"
+        },
+        {
+            "id": 6,
+            "title": "Product 2",
+            "category": "product",
+            "description": "Sleek product landing page showing dynamic features and specs.",
+            "image": "assets\/img\/portfolio\/product-2.jpg",
+            "details_link": "portfolio-details.html",
+            "created_at": "2026-06-12 16:59:32",
+            "updated_at": "2026-06-12 16:59:32"
+        }
+    ],
+    "resume_items": [
+        {
+            "id": 1,
+            "type": "education",
+            "title": "Bachelor of Computer Science",
+            "organization": "Cairo University",
+            "duration": "2016 - 2020",
+            "description": "Graduated with honors. Specialization in Software Engineering and Database Design.",
+            "created_at": "2026-06-12 16:59:32",
+            "updated_at": "2026-06-12 16:59:32"
+        },
+        {
+            "id": 2,
+            "type": "education",
+            "title": "Full Stack Web Development Diploma",
+            "organization": "Information Technology Institute (ITI)",
+            "duration": "2020 - 2021",
+            "description": "Intensive training program focusing on Laravel, Vue.js, clean code practices, and DevOps.",
+            "created_at": "2026-06-12 16:59:32",
+            "updated_at": "2026-06-12 16:59:32"
+        },
+        {
+            "id": 3,
+            "type": "experience",
+            "title": "Senior Full Stack Developer",
+            "organization": "TechSolutions Agency",
+            "duration": "2023 - Present",
+            "description": "Lead development teams, design microservices architectures, and build modern responsive web solutions using Laravel and Vue.",
+            "created_at": "2026-06-12 16:59:32",
+            "updated_at": "2026-06-12 16:59:32"
+        },
+        {
+            "id": 4,
+            "type": "experience",
+            "title": "Full Stack Web Developer",
+            "organization": "Creative Web Studio",
+            "duration": "2021 - 2023",
+            "description": "Built custom PHP and Laravel backend API engines and connected them with interactive Vue\/React frontends.",
+            "created_at": "2026-06-12 16:59:32",
+            "updated_at": "2026-06-12 16:59:32"
+        }
+    ],
+    "testimonials": [
+        {
+            "id": 1,
+            "name": "Saul Goodman",
+            "role": "Attorney & Founder",
+            "quote": "Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et.",
+            "stars": 5,
+            "image": "assets\/img\/testimonials\/testimonials-1.jpg",
+            "created_at": "2026-06-12 16:59:32",
+            "updated_at": "2026-06-12 16:59:32"
+        },
+        {
+            "id": 2,
+            "name": "Sara Wilsson",
+            "role": "Creative Director",
+            "quote": "Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster.",
+            "stars": 5,
+            "image": "assets\/img\/testimonials\/testimonials-2.jpg",
+            "created_at": "2026-06-12 16:59:33",
+            "updated_at": "2026-06-12 16:59:33"
+        },
+        {
+            "id": 3,
+            "name": "Jena Karlis",
+            "role": "E-Shop Owner",
+            "quote": "Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute.",
+            "stars": 5,
+            "image": "assets\/img\/testimonials\/testimonials-3.jpg",
+            "created_at": "2026-06-12 16:59:33",
+            "updated_at": "2026-06-12 16:59:33"
+        }
+    ],
+    "contact_messages": [
+        {
+            "id": 1,
+            "name": "Test User",
+            "email": "test@example.com",
+            "subject": "Hello Keshk",
+            "message": "This is a test message from automated test verification.",
+            "created_at": "2026-06-12 17:08:06",
+            "updated_at": "2026-06-12 17:08:06"
+        }
+    ]
+}
