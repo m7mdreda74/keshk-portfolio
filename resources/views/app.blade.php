@@ -192,6 +192,50 @@
     }
     /* Hide static hero once Vue mounts content */
     #app:not(:empty) ~ #static-hero { display: none; }
+
+    @media (max-width: 575.98px) {
+      #static-hero {
+        min-height: 100svh;
+        padding: 96px 16px 32px;
+      }
+
+      #static-hero .sh-content {
+        width: 100%;
+        padding: 0;
+      }
+
+      #static-hero h1 {
+        font-size: clamp(1.9rem, 9vw, 2.7rem);
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+      }
+
+      #static-hero h1 span {
+        display: inline;
+      }
+
+      #static-hero .sh-tagline {
+        font-size: 11px;
+        line-height: 1.7;
+        letter-spacing: 1px;
+      }
+
+      #static-hero .sh-btns {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 320px;
+        margin-inline: auto;
+      }
+
+      #static-hero .sh-btns a {
+        justify-content: center;
+        width: 100%;
+        min-height: 48px;
+        margin: 5px 0;
+      }
+    }
   </style>
 </head>
 <body class="index-page">
